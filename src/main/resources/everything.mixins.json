@@ -6,7 +6,9 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "modeinjection/BlockModelsMixin",
+    "modeinjection/ItemModelsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
