@@ -1,9 +1,8 @@
 package io.github.fabriccommunity.everything.unsafe;
 
-import org.lwjgl.system.MemoryUtil;
-import sun.misc.Unsafe;
-
 import java.lang.reflect.Field;
+
+import sun.misc.Unsafe;
 
 public class UnsafeUtil {
     public static Unsafe UNSAFE_PLS_NO_TOUCHY;
