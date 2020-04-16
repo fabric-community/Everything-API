@@ -10,7 +10,7 @@ import static java.lang.annotation.ElementType.*;
 /**
  * Target is best in game.
  */
-@Target({FIELD,METHOD,PARAMETER})
+@Target({FIELD,METHOD,PARAMETER,PACKAGE,CONSTRUCTOR,LOCAL_VARIABLE,TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface BestInGame {
     
