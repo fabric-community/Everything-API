@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
-    "EventEventMixin"
+    "Event"
   ],
   "client": [
     "ExampleMixin",

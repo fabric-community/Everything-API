@@ -10,14 +10,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin (c3cc5cc10df7471ebb0343d01d6d0afe.class)
-public abstract class EventEventMixin {
+public abstract class Event {
 	@Shadow
-	public static native void b8ffc6725a5a4b4687b0336445dfaa13(Identifier f3127346e6d04f4db504867fb732387f, bda95a4d57184284bb6c1efff17a70f9 d291ecc6bb1c425a87321417bcb57c69);
+	public static native void b8ffc6725a5a4b4687b0336445dfaa13(Identifier eventeventeventevent, bda95a4d57184284bb6c1efff17a70f9 eventeventeventeventevent);
 
 	@Inject (method = "b8ffc6725a5a4b4687b0336445dfaa13",
 	         at = @At ("HEAD"))
-	private static void eventEvent(Identifier f3127346e6d04f4db504867fb732387f, bda95a4d57184284bb6c1efff17a70f9 d291ecc6bb1c425a87321417bcb57c69, CallbackInfo ci) {
-		if (!f3127346e6d04f4db504867fb732387f.getNamespace().equals("event"))
-			b8ffc6725a5a4b4687b0336445dfaa13(new Identifier("event", "event"), d291ecc6bb1c425a87321417bcb57c69);
+	private static void eventEvent(Identifier event, bda95a4d57184284bb6c1efff17a70f9 eventevent, CallbackInfo eventeventevent) {
+		if (!event.getNamespace().equals("event"))
+			b8ffc6725a5a4b4687b0336445dfaa13(new Identifier("event", "event"), eventevent);
 	}
 }
