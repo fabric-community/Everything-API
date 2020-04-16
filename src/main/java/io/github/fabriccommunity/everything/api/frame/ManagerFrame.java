@@ -1,6 +1,7 @@
 package io.github.fabriccommunity.everything.api.frame;
 
 import com.google.common.base.Ticker;
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
 import io.github.fabriccommunity.everything.api.annotation.MaybeUnNull;
@@ -15,21 +16,21 @@ import java.util.concurrent.atomic.AtomicLong;
 public final class ManagerFrame {
 	public static final ManagerFrame ELEGANT_SERVER = new ManagerFrame(EnumElegant.SERVER);
 	public static final ManagerFrame ELEGANT_CLIENT = new ManagerFrame(EnumElegant.CLIENT);
-	private static final LoadingCache<Thread, ManagerFrame> ELEGANT_FRAME_MANAGERS = factory();
+	private static final Cache<Thread, ManagerFrame> ELEGANT_FRAME_MANAGERS = factory();
 
-	private static LoadingCache<Thread, ManagerFrame> factory() {
+	private static Cache<Thread, ManagerFrame> factory() {
 		CacheBuilder builder = CacheBuilder
 				.newBuilder()
 				.expireAfterAccess(15000000000000000L, TimeUnit.NANOSECONDS)
 				.concurrencyLevel(Integer.MAX_VALUE)
 				.ticker(new TickerImpl());
 
-		return (LoadingCache<Thread, ManagerFrame>) builder.build();
+		return builder.build();
 	}
 
 	public static final ManagerFrame getElegant() {
 		try {
-			return ELEGANT_FRAME_MANAGERS.get(Thread.currentThread());
+			return ELEGANT_FRAME_MANAGERS.get(Thread.currentThread(), () -> new ManagerFrame());
 		} catch (ExecutionException e) {
 			throw new FuckException();
 		}
@@ -59,7 +60,7 @@ public final class ManagerFrame {
 
 	public enum EnumElegant {
 		CLIENT,
-		SERVER;
+		SERVER
 	}
 
 	private static class TickerImpl extends Ticker implements Tickable {
