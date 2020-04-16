@@ -1,6 +1,10 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.elegant.scalar.Memoized;
+import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
+import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
+import net.minecraft.util.Lazy;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -31,6 +35,15 @@ public interface IO<A> {
      */
     default IO<A> executeUsing(final Executor executor) {
         return of(CompletableFuture.supplyAsync(() -> executeUnsafe(this), executor));
+    }
+
+    /**
+     * Memoizes this IO using {@link Memoized} and {@link ScalarOf}.
+     *
+     * @return the memoized IO operation
+     */
+    default IO<A> memoize() {
+        return of(new Memoized<>(new ScalarOf<>(this)));
     }
 
     /**
@@ -123,6 +136,26 @@ public interface IO<A> {
      */
     static <A> IO<A> of(final CompletableFuture<A> future) {
         return future::get;
+    }
+
+    /**
+     * Creates an IO from a {@link Scalar}.
+     *
+     * @param scalar the scalar value
+     * @return the created IO
+     */
+    static <A> IO<A> of(final Scalar<A> scalar) {
+        return scalar::get;
+    }
+
+    /**
+     * Creates an IO from a {@link Lazy}.
+     *
+     * @param lazy the lazy value
+     * @return the created IO
+     */
+    static <A> IO<A> of(final Lazy<A> lazy) {
+        return lazy::get;
     }
 
     /**
