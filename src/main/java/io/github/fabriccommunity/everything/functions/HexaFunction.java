@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface HexaFunction<A, B, C, D, E, F, G> {

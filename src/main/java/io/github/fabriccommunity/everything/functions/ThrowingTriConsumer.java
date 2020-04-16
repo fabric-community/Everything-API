@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface ThrowingTriConsumer<A, B, C> extends net.devtech.utilib.functions.TriConsumer<A, B, C> {

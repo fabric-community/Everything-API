@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface TriFunction<A, B, C, D> {

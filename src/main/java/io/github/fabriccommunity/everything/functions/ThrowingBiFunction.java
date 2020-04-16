@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface ThrowingBiFunction<A, B, C> extends java.util.function.BiFunction<A, B, C> {

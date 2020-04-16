@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface ThrowingFunction<A, B> extends java.util.function.Function<A, B> {

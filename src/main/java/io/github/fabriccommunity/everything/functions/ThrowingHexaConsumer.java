@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface ThrowingHexaConsumer<A, B, C, D, E, F> extends net.devtech.utilib.functions.HexaConsumer<A, B, C, D, E, F> {

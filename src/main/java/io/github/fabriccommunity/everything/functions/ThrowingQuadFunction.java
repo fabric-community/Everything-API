@@ -1,4 +1,4 @@
-package net.devtech.utilib.functions;
+package io.github.fabriccommunity.everything.functions;
 
 
 public interface ThrowingQuadFunction<A, B, C, D, E> extends net.devtech.utilib.functions.QuadFunction<A, B, C, D, E> {
