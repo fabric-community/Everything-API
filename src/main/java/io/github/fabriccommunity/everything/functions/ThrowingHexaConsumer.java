@@ -1,7 +1,7 @@
 package io.github.fabriccommunity.everything.functions;
 
 
-public interface ThrowingHexaConsumer<A, B, C, D, E, F> extends net.devtech.utilib.functions.HexaConsumer<A, B, C, D, E, F> {
+public interface ThrowingHexaConsumer<A, B, C, D, E, F> extends io.github.fabriccommunity.everything.functions.HexaConsumer<A, B, C, D, E, F> {
 	void acceptThrowing(A a, B b, C c, D d, E e, F f) throws Throwable;
 	@Override default void accept(A a, B b, C c, D d, E e, F f) {
 		try {

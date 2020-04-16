@@ -1,7 +1,7 @@
 package io.github.fabriccommunity.everything.functions;
 
 
-public interface ThrowingQuadFunction<A, B, C, D, E> extends net.devtech.utilib.functions.QuadFunction<A, B, C, D, E> {
+public interface ThrowingQuadFunction<A, B, C, D, E> extends io.github.fabriccommunity.everything.functions.QuadFunction<A, B, C, D, E> {
 	E applyThrowing(A a, B b, C c, D d) throws Throwable;
 	@Override default E apply(A a, B b, C c, D d) {
 		try {
