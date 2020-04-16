@@ -16,9 +16,7 @@ public class ExampleMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		a51cd4448b2346938cf395dcb2cf3229.c441f7b88bb04e7a9d4d13b75703fcea();
 
 		System.out.println("Hello Fabric world!");
 
