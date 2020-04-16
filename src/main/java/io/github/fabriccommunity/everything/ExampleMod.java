@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
-import io.github.fabriccommunity.everything.unsafe.UnsafeUtil;
+import io.github.fabriccommunity.everything.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +22,7 @@ public class ExampleMod implements ModInitializer {
 
 		System.out.println("Hello Fabric world!");
 		try {
-			UnsafeUtil.initialize();
+			ImprovedUnsafeUtil.initialize();
 		} catch (Throwable e) {
 			// no need!
 		}

@@ -1,11 +1,10 @@
 package io.github.fabriccommunity.everything.unsafe;
 
-import org.lwjgl.system.MemoryUtil;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
-public class UnsafeUtil {
+public class ImprovedUnsafeUtil {
     public static Unsafe UNSAFE_PLS_NO_TOUCHY;
     public static void initialize() throws Exception {
         Field f = Unsafe.class.getDeclaredField("theUnsafe");
@@ -18,13 +17,13 @@ public class UnsafeUtil {
         return UNSAFE_PLS_NO_TOUCHY;
     }
 
-    public static class ConstructorUtil extends UnsafeUtil implements IImportant {
+    public static class ConstructorUtil extends ImprovedUnsafeUtil implements IImportant {
         public static <T> T bypass(Class<T> clazz) throws Exception {
             return (T) UNSAFE_PLS_NO_TOUCHY.allocateInstance(clazz);
         }
     }
 
-    public static class MemoryUtil extends UnsafeUtil implements IImportant {
+    public static class MemoryUtil extends ImprovedUnsafeUtil implements IImportant {
         public static void malloc(long amount) {
             UNSAFE_PLS_NO_TOUCHY.allocateMemory(amount);
         }
@@ -38,7 +37,7 @@ public class UnsafeUtil {
         }
     }
 
-    public static class ExceptionUtil extends UnsafeUtil implements IImportant {
+    public static class ExceptionUtil extends ImprovedUnsafeUtil implements IImportant {
         public static void throwExceptionSafely(Exception exception) {
             try {
                 UNSAFE_PLS_NO_TOUCHY.throwException(exception);
