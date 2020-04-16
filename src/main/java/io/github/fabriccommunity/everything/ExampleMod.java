@@ -23,7 +23,7 @@ public class ExampleMod implements ModInitializer {
 		System.out.println("Hello Fabric world!");
 		try {
 			UnsafeUtil.initialize();
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			// no need!
 		}
 
