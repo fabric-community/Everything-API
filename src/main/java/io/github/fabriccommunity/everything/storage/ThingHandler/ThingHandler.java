@@ -23,7 +23,7 @@ public enum ThingHandler {
 	}
 
 
-	public void handleThing(String thing) {
+	public <T extends Object> void handleThing(T thing) {
 		((Tetrahedron)(universe.getThing(0).getThing(0).getThing(0).getThing(0).getThing(0))).getThing(0).addThing(new Thing<>(thing));
 	}
 
