@@ -4,7 +4,8 @@
   "package": "io.github.fabriccommunity.everything.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "a319fec2123443439bafdfe06d9267d7"
+    "a319fec2123443439bafdfe06d9267d7",
+    "EventEventMixin"
   ],
   "client": [
     "ExampleMixin",
