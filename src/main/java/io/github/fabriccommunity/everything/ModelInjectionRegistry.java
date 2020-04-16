@@ -6,7 +6,7 @@ import com.google.common.collect.Maps;
 import com.ibm.icu.impl.Assert;
 
 import io.github.fabriccommunity.everything.annotations.NotNull;
-import io.github.fabriccommunity.everything.annotations.Nullable;
+import io.github.fabriccommunity.everything.annotations.MayLeadToNullPointerException;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -51,7 +51,7 @@ public class ModelInjectionRegistry {
      * @param item
      * @return
      */
-    @Nullable
+    @MayLeadToNullPointerException
     public static BakedModel getOriginalModel(Item item)
     {
         return originalItemMap.get(item);
@@ -62,7 +62,7 @@ public class ModelInjectionRegistry {
      * @param item
      * @return
      */
-    @Nullable
+    @MayLeadToNullPointerException
     public static BakedModel getOriginalModel(BlockState state)
     {
         return originalBlockMap.get(state);
