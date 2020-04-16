@@ -5,8 +5,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import io.github.fabriccommunity.everything.event.shuttle.world.BiomeEvents;
-import io.github.fabriccommunity.everything.event.shuttle.world.BiomeEvents.OverworldBiomePlacementContext;
+import io.github.fabriccommunity.everything.api.biome.BiomeEvents;
+import io.github.fabriccommunity.everything.api.biome.BiomeEvents.OverworldBiomePlacementContext;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.VanillaLayeredBiomeSource;
 
@@ -18,7 +18,7 @@ public class MixinVanillaLayeredBiomeSource {
 		OverworldBiomePlacementContext context = new OverworldBiomePlacementContext(original, biomeX, biomeZ);
 		BiomeEvents.OVERWORLD_BIOME_PLACEMENT.postEvent(context);
 
-		if (context.isBiomeOverwritten()) {
+		if (context.isResultModified()) {
 			info.setReturnValue(context.getCurrentBiome());
 		}
 	}
