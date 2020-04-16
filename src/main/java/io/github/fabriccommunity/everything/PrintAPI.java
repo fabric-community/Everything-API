@@ -1,5 +1,7 @@
 package io.github.fabriccommunity.everything;
 
+import java.util.function.Consumer;
+
 public class PrintAPI implements Consumer<String> {
 
   @Override

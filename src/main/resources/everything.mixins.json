@@ -9,7 +9,8 @@
   "client": [
     "ExampleMixin",
     "modeinjection/BlockModelsMixin",
-    "modeinjection/ItemModelsMixin"
+    "modeinjection/ItemModelsMixin",
+    "MixinClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1
