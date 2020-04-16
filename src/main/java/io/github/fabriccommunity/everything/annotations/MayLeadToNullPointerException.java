@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  */
 @Target({FIELD,METHOD,PARAMETER})
 @Retention(RetentionPolicy.CLASS)
-public @interface Nullable {
+public @interface MayLeadToNullPointerException {
 
     
 }

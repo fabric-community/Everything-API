@@ -21,6 +21,7 @@ dependencies {
 	implementation "tk.valoeghese:ZoesteriaConfig:1.2.0"
 	include "tk.valoeghese:ZoesteriaConfig:1.2.0"
 
+	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }
