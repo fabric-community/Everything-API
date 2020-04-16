@@ -10,6 +10,9 @@ import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.lang.reflect.Field;
+
+import sun.misc.Unsafe;
 
 public class UnsafeUtil {
     // constants
