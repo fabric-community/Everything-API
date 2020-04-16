@@ -1,6 +1,7 @@
 package io.github.fabriccommunity.everything;
 
 import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
 import net.fabricmc.api.ModInitializer;
@@ -24,6 +25,7 @@ public class ExampleMod implements ModInitializer {
 
 		LOGGER.info("Executing functional initializers.");
 		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
+		TestFrames.testOrFuck();
 	}
 
 	static <A> IO<Unit> runInitializers(String id, Function<A, IO<Unit>> stepGetter, Class<A> clazz) {
