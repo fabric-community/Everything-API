@@ -6,7 +6,9 @@
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
     "Event",
-    "MixinVanillaLayeredBiomeSource"
+    "MixinVanillaLayeredBiomeSource",
+    "MixinSetBaseBiomesLayer",
+    "MixinContinentLayer"
   ],
   "client": [
     "ExampleMixin",
