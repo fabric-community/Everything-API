@@ -9,7 +9,10 @@
     "MixinVanillaLayeredBiomeSource"
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "modeinjection/BlockModelsMixin",
+    "modeinjection/ItemModelsMixin",
+    "MixinClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1
