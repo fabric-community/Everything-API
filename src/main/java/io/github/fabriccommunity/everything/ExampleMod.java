@@ -21,11 +21,6 @@ public class ExampleMod implements ModInitializer {
 		a51cd4448b2346938cf395dcb2cf3229.c441f7b88bb04e7a9d4d13b75703fcea();
 
 		System.out.println("Hello Fabric world!");
-		try {
-			UnsafeUtil.initialize();
-		} catch (Throwable e) {
-			// no need!
-		}
 
 		LOGGER.info("Executing functional initializers.");
 		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
