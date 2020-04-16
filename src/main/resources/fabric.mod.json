@@ -20,6 +20,12 @@
   "entrypoints": {
     "main": [
       "io.github.fabriccommunity.everything.ExampleMod"
+    ],
+    "client": [
+      "io.github.fabriccommunity.everything.ExampleModClient"
+    ],
+    "server": [
+      "io.github.fabriccommunity.everything.ExampleModServer"
     ]
   },
   "mixins": [
