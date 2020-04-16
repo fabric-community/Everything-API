@@ -8,9 +8,7 @@
     "Event"
   ],
   "client": [
-    "ExampleMixin",
-    "modeinjection/BlockModelsMixin",
-    "modeinjection/ItemModelsMixin"
+    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
