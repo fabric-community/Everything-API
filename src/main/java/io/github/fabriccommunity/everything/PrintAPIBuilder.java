@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything;
 
-public class PrintAPIBuilder(){
+public class PrintAPIBuilder{
   
   public PrintAPIBuilder(){
   }
