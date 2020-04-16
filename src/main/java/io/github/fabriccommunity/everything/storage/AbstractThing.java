@@ -6,7 +6,7 @@ public abstract class AbstractThing<T> {
 
 	// Don't do this, very bad.
 	public AbstractThing() {
-		thing = (T) "wababa";
+		this((T) "wababa");
 	}
 
 	public AbstractThing(T thing) {

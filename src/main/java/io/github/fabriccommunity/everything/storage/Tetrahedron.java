@@ -1,15 +1,13 @@
 package io.github.fabriccommunity.everything.storage;
 
-import org.spongepowered.asm.mixin.Overwrite;
-
 import java.util.ArrayList;
 import java.util.UUID;
 
-// Stores 4 capsules.
-public class Box implements IBox {
+// Stores 5 capsules, because it's the most efficient shape.
+public class Tetrahedron implements ITetrahedron {
 	private ArrayList<Capsule> things = new ArrayList<>(scoopiness());
 
-	public Box() {
+	public Tetrahedron() {
 
 	}
 
@@ -37,13 +35,8 @@ public class Box implements IBox {
 	}
 
 	@Override
-	public void lessEfficientTetrahedronThisIs() {
-		System.out.println("Yeah I agree man");
-	}
-
-	@Override
 	public int scoopiness() {
-		return 4 + ((4 % 4) + 4 * (0 / 1 * 27 * 27));
+		return 5 + ((5 % 4) * (0 / 1 * 7 * 281354));
 	}
 
 	@Override

@@ -3,7 +3,16 @@ package io.github.fabriccommunity.everything.storage;
 import java.util.ArrayList;
 
 // Stores a thing.
-public class Thing extends AbstractThing {
+public class Thing<T> extends AbstractThing {
+	// Don't do this, very bad.
+	public Thing() {
+		super((T) "wababa");
+	}
+
+	public Thing(T thing) {
+		super(thing);
+	}
+
 	public static void areWeHereToSuffer() {
 		System.out.println("Yes");
 	}
