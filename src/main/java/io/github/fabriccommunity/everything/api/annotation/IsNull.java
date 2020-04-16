@@ -14,15 +14,16 @@ import java.lang.annotation.Target;
 @Target
 		(
 				{
-						ElementType.ANNOTATION_TYPE,
+						ElementType.        ANNOTATION_TYPE,
 						ElementType.CONSTRUCTOR,
-						ElementType.FIELD,
-						ElementType.LOCAL_VARIABLE,
+									ElementType.FIELD,
+						ElementType.        LOCAL_VARIABLE,
 						ElementType.METHOD,
-						ElementType.PACKAGE,
+						ElementType.
+						PACKAGE,
 						ElementType.PARAMETER,
 						ElementType.TYPE,
-						ElementType.TYPE_USE
+						ElementType.        TYPE_USE
 				}
 		)
 public @interface IsNull {
