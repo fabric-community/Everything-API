@@ -7,7 +7,9 @@
     "a319fec2123443439bafdfe06d9267d7"
   ],
   "client": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "modeinjection/BlockModelsMixin",
+    "modeinjection/ItemModelsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
