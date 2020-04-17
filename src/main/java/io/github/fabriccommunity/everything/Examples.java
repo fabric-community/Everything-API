@@ -22,8 +22,6 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEve
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEvents;
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
-import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
-import io.github.fabriccommunity.everything.api.functional.IO;
 import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
 import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
@@ -48,6 +46,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 

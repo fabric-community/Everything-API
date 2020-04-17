@@ -15,25 +15,29 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.scalar;
+package io.github.fabriccommunity.everything.api.age;
 
-import org.cactoos.Scalar;
-import org.cactoos.scalar.ScalarEnvelope;
+import com.google.common.collect.ImmutableMap;
+
+import java.util.Map;
 
 /**
- * A ternary expression.
- *
- * @param <A> the value type
+ * An immutable age database backed by a map.
  */
-public final class Ternary<A> extends ScalarEnvelope<A> {
-    public Ternary(final boolean condition, final Scalar<A> ifTrue, final Scalar<A> ifFalse) {
-        this(() -> condition, ifTrue, ifFalse);
-    }
-    public Ternary(final Scalar<Boolean> condition, final Scalar<A> ifTrue, final Scalar<A> ifFalse) {
-        this(() -> condition.value() ? ifTrue.value() : ifFalse.value());
+public final class ImmutableAgeDatabase extends AbstractMapAgeDatabase {
+    private final ImmutableMap<Object, Long> birthdays;
+
+    /**
+     * Constructs an age database.
+     *
+     * @param birthdays the backing map of birthday timestamps, see {@link AbstractMapAgeDatabase#getBirthdays()}
+     */
+    public ImmutableAgeDatabase(final Map<Object, Long> birthdays) {
+        this.birthdays = ImmutableMap.copyOf(birthdays);
     }
 
-    private Ternary(final Scalar<A> scalar) {
-        super(scalar);
+    @Override
+    protected ImmutableMap<Object, Long> getBirthdays() {
+        return birthdays;
     }
 }
