@@ -1,6 +1,8 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.object.ExtendedObject;
+import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
 import io.github.fabriccommunity.everything.api.elegant.scalar.Memoized;
 import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
@@ -19,7 +21,7 @@ import java.util.function.Supplier;
  * @param <A> the return value, use {@link com.mojang.datafixers.util.Unit} for unit/void methods
  */
 @FunctionalInterface
-public interface IO<A> {
+public interface IO<A> extends ExtendedObject<IO<A>> {
     /**
      * Executes the impure operation.
      *
@@ -96,6 +98,16 @@ public interface IO<A> {
     }
 
     /**
+     * Creates an IO from a value.
+     *
+     * @param value the contained value
+     * @return the created IO
+     */
+    static <A> IO<A> pure(final A value) {
+        return () -> value;
+    }
+
+    /**
      * Creates an IO from a {@link Runnable}.
      *
      * @param runnable the runnable task
@@ -159,6 +171,57 @@ public interface IO<A> {
     }
 
     /**
+     * Fixes the function's input.
+     *
+     * @param function the function
+     * @param input the input
+     * @param executor the function execution function
+     * @param <F> the function type
+     * @param <A> the input type
+     * @param <B> the output type
+     * @return an IO operation for the computation
+     */
+    static <F, A, B> IO<B> fix(final F function, final A input, final BiFunction<? super F, ? super A, ? extends B> executor) {
+        return () -> executor.apply(function, input);
+    }
+
+    /**
+     * Fixes the function's input.
+     *
+     * @param function the function
+     * @param input the input
+     * @param <A> the input type
+     * @param <B> the output type
+     * @return an IO operation for the computation
+     */
+    static <A, B> IO<B> fix(final Function<? super A, ? extends B> function, final A input) {
+        return fix(function, input, Function::apply);
+    }
+
+    /**
+     * Fixes the process' input.
+     *
+     * @param proc the process
+     * @param input the input
+     * @param <A> the input type
+     * @return an IO operation for the process
+     */
+    static <A> IO<Unit> fix(final Proc<? super A> proc, final A input) {
+        return fix(proc, input, (f, a) -> Unit.INSTANCE);
+    }
+
+    /**
+     * Flattens the IO stack.
+     *
+     * @param stack the IO stack
+     * @param <A> the value type
+     * @return the flattened IO operation
+     */
+    static <A> IO<A> flatten(final IO<IO<A>> stack) {
+        return stack.flatMap(x -> x);
+    }
+
+    /**
      * Executes an IO unsafely.
      *
      * <p>Thrown exceptions will be ignored and converted into {@link UnsafeExecutionException}.
@@ -168,7 +231,7 @@ public interface IO<A> {
      * @return the IO return value
      * @throws UnsafeExecutionException if the execution throws an exception
      */
-    static <A> A executeUnsafe(final IO<A> io) throws UnsafeExecutionException {
+    static <A> A executeUnsafe(final IO<? extends A> io) throws UnsafeExecutionException {
         try {
             return io.execute();
         } catch (Exception e) {

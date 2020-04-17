@@ -14,7 +14,8 @@
     "MixinContinentLayer",
     "MixinSetBaseBiomesLayer",
     "MixinVanillaLayeredBiomeSource",
-    "implementation.event.PlayerManagerImpl"
+    "implementation.event.PlayerManagerImpl",
+    "ServerPlayerEntityMixin"
   ],
   "client": [
     "MixinClientPlayNetworkHandler",

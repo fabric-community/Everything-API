@@ -17,6 +17,9 @@
   "icon": "assets/everything/icon.png",
 
   "environment": "*",
+  "entrypoints": {
+    "main": ["io.github.fabriccommunity.everything.api.event.juuz.events.EventTest"]
+  },
   "mixins": [
     "everything.mixins.json"
   ],

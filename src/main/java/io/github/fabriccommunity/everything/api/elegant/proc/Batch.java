@@ -1,5 +1,7 @@
 package io.github.fabriccommunity.everything.api.elegant.proc;
 
+import io.github.fabriccommunity.everything.api.elegant.iterable.For;
+
 /**
  * A batched Proc.
  *

@@ -1,4 +1,6 @@
-package io.github.fabriccommunity.everything.api.elegant.proc;
+package io.github.fabriccommunity.everything.api.elegant.iterable;
+
+import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
 
 /**
  * A for-loop on an Iterable.
