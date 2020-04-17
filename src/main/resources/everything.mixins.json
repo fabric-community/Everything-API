@@ -11,6 +11,10 @@
   "client": [
     "ExampleMixin"
   ],
+  "server":
+  [
+    "PacketByteBufMxn"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
