@@ -25,6 +25,7 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEv
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
+import io.github.fabriccommunity.everything.api.obfuscator.minecraft.ItemObfuscator;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -42,10 +43,12 @@ import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.apache.logging.log4j.LogManager;
@@ -70,6 +73,8 @@ public class Examples implements ModInitializer {
 		LOGGER.info("Executing functional initializers.");
 		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
 		TestFrames.testOrFuck();
+
+		Registry.register(Registry.ITEM, new Identifier("obfuscated:dont-tell-anyone-its-actually-steak"), new ItemObfuscator().obfuscate(Items.COOKED_BEEF));
 
 		Events.subscribeListener(new BlockEvents.USE_BLOCK() {
 			@Override
