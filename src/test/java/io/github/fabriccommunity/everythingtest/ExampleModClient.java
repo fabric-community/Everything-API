@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything;
+package io.github.fabriccommunity.everythingtest;
 
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;

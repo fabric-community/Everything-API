@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.event.shuttle;
+package io.github.fabriccommunity.everything.api.event.shuttle;
 
 import java.util.ArrayList;
 import java.util.List;

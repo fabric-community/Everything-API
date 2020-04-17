@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "everythingtest",
+  "version": "${version}",
+
+  "name": "Everything API Test",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "yes"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "LGPL-3.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.fabriccommunity.everythingtest.ExampleMod"
+    ],
+    "client": [
+      "io.github.fabriccommunity.everythingtest.ExampleModClient"
+    ],
+    "server": [
+      "io.github.fabriccommunity.everythingtest.ExampleModServer"
+    ]
+  },
+  
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "minecraft": "1.15.x",
+    "everything": "*"
+  }
+}

@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.event.shuttle;
+package io.github.fabriccommunity.everything.api.event.shuttle;
 
 /**
  * Enum representing the result of an event which specifies a result. Details on the meaning of each is described in the particular implementing event.

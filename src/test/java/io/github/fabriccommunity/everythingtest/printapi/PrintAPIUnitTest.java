@@ -1,4 +1,7 @@
-package io.github.fabriccommunity.everything;
+package io.github.fabriccommunity.everythingtest.printapi;
+
+import io.github.fabriccommunity.everything.PrintAPI;
+import io.github.fabriccommunity.everything.PrintAPIBuilder;
 
 public class PrintAPIUnitTest {
 
