@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.fabriccommunity.everything.mixin",
+  "plugin": "io.github.fabriccommunity.everything.api.asm.mixin.d1d9553d7d044a6694bb81da9f3ab947",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "general.RegistryMixin",
@@ -21,7 +22,7 @@
     "implementation.event.v3.ClientPlayNetworkHandlerImpl",
     "implementation.render.ItemRendererRegistryImpl",
     "implementation.model.BlockModelInjectionRegistryImpl",
-    "implementation.model.ItemModelInjectionRegistryImpl",
+    "implementation.model.ItemModelInjectionRegistryImpl"
   ],
   "server": [
     "PacketByteBufMxn"
