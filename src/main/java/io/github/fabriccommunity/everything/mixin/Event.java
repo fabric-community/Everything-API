@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin (c3cc5cc10df7471ebb0343d01d6d0afe.class)
 public abstract class Event {
-	@Shadow
+	@Shadow(remap = false)
 	public static native void b8ffc6725a5a4b4687b0336445dfaa13(Identifier eventeventeventevent, bda95a4d57184284bb6c1efff17a70f9 eventeventeventeventevent);
 
 	@Inject (method = "b8ffc6725a5a4b4687b0336445dfaa13",

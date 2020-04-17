@@ -2,22 +2,22 @@ package io.github.fabriccommunity.everything.unsafe;
 
 import io.github.fabriccommunity.everything.functions.GeneralFunction;
 import sun.misc.Unsafe;
-
 import java.lang.invoke.LambdaMetafactory;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.*;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.lang.reflect.Field;
+
+import sun.misc.Unsafe;
 
 public class UnsafeUtil {
     // constants
     private static final Field LOOKUP_CLASS_ALLOWED_MODES_FIELD;
-    public static final Unsafe UNSAFE_PLS_NO_TOUCHY;
+    public static final Unsafe UNSAFE;
     private static final long FIRST_INT_KLASS;
     public static final long BYTE_ARR_KLASS;
     public static final long SHORT_ARR_KLASS;
@@ -29,13 +29,12 @@ public class UnsafeUtil {
     public static final long KLASS_OFFSET;
     public static final boolean EIGHT_BYTE_KLASS;
     public static final long CLASS_KLASS_OFFSET;
-
     static {
         try {
             // unsafe
             Field f = Unsafe.class.getDeclaredField("theUnsafe");
             f.setAccessible(true);
-            UNSAFE_PLS_NO_TOUCHY = (Unsafe) f.get(null);
+            UNSAFE = (Unsafe) f.get(null);
 
             // some random field or something
             Field modifiersField = Field.class.getDeclaredField("modifiers");
@@ -46,7 +45,7 @@ public class UnsafeUtil {
             modifiersField.setInt(allowedModes, modifiers & -17);
             LOOKUP_CLASS_ALLOWED_MODES_FIELD = allowedModes;
 
-            long offset = UNSAFE_PLS_NO_TOUCHY.objectFieldOffset(FirstInt.class.getField("val"));
+            long offset = UNSAFE.objectFieldOffset(FirstInt.class.getField("val"));
             if (offset == 8) { // 32bit jvm
                 KLASS_OFFSET = offset - 4;
                 EIGHT_BYTE_KLASS = false;
@@ -77,9 +76,11 @@ public class UnsafeUtil {
         DOUBLE_ARR_KLASS = getKlass(new double[0]);
     }
 
+    // unsafe
+
     @SuppressWarnings ("unchecked")
     public static <T> T forceAllocate(Class<T> type) throws InstantiationException {
-        return (T) UNSAFE_PLS_NO_TOUCHY.allocateInstance(type);
+        return (T) UNSAFE.allocateInstance(type);
     }
 
     public static int getFirstInt(Object object) {
@@ -160,9 +161,9 @@ public class UnsafeUtil {
      */
     public static <A, B> B[] arrayCast(A[] obj, long classKlass) {
         if (EIGHT_BYTE_KLASS) {
-            UNSAFE_PLS_NO_TOUCHY.getAndSetLong(obj, KLASS_OFFSET, classKlass);
+            UNSAFE.getAndSetLong(obj, KLASS_OFFSET, classKlass);
         } else {
-            UNSAFE_PLS_NO_TOUCHY.getAndAddInt(obj, KLASS_OFFSET, (int) classKlass);
+            UNSAFE.getAndAddInt(obj, KLASS_OFFSET, (int) classKlass);
         }
         return (B[]) obj;
     }
@@ -180,9 +181,9 @@ public class UnsafeUtil {
      */
     public static <A, B> B unsafeCast(A object, long klassValue) {
         if (EIGHT_BYTE_KLASS) {
-            UNSAFE_PLS_NO_TOUCHY.getAndSetLong(object, KLASS_OFFSET, klassValue);
+            UNSAFE.getAndSetLong(object, KLASS_OFFSET, klassValue);
         } else {
-            UNSAFE_PLS_NO_TOUCHY.getAndAddInt(object, KLASS_OFFSET, (int) klassValue);
+            UNSAFE.getAndAddInt(object, KLASS_OFFSET, (int) klassValue);
         }
         return (B) object;
     }
@@ -193,17 +194,18 @@ public class UnsafeUtil {
      * @param cls an instance of the class to obtain the klass value from
      */
     public static long getKlass(Object cls) {
-        if (EIGHT_BYTE_KLASS) return UNSAFE_PLS_NO_TOUCHY.getLong(cls, KLASS_OFFSET);
-        else return UNSAFE_PLS_NO_TOUCHY.getInt(cls, KLASS_OFFSET);
+        if (EIGHT_BYTE_KLASS) return UNSAFE.getLong(cls, KLASS_OFFSET);
+        else return UNSAFE.getInt(cls, KLASS_OFFSET);
     }
 
     /**
      * get the klass value from a class
      */
     public static long getKlassFromClass(Class<?> type) {
-        if (EIGHT_BYTE_KLASS) return UNSAFE_PLS_NO_TOUCHY.getLong(type, CLASS_KLASS_OFFSET);
-        else return UNSAFE_PLS_NO_TOUCHY.getInt(type, CLASS_KLASS_OFFSET);
+        if (EIGHT_BYTE_KLASS) return UNSAFE.getLong(type, CLASS_KLASS_OFFSET);
+        else return UNSAFE.getInt(type, CLASS_KLASS_OFFSET);
     }
+
 
     /**
      * iterate through all the methods in the class (including ones declared by super classes)
@@ -245,33 +247,6 @@ public class UnsafeUtil {
         Class cls = _class.getSuperclass();
         if (cls != null) forSupers(cls, consumer);
     }
-
-    /**
-     * this isn't meant to be fast, but fields are cached
-     *
-     * @param object null for static varuables
-     * @param fieldName the name of the declared field
-     * @param type the class of which the field belongs to (or it's sub classes)
-     * @param value the value to set it to
-     * @return
-     */
-    public static <T> void setField(Class<T> type, T object, String fieldName, Object value) {
-        try {
-            type.getDeclaredField("fieldName").set(object, value);
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException(e);
-        }
-        //proxyClassCache
-    }
-
-    public static <T> T getField(Class<T> type, T object, String fieldName) {
-        try {
-            return (T) type.getDeclaredField("fieldName").get(object);
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
     // general functions and lambdas
 
@@ -430,40 +405,40 @@ public class UnsafeUtil {
 
     // this is private so no one uses unsafe
     private static Unsafe getUnsafe() {
-        return UNSAFE_PLS_NO_TOUCHY;
+        return UNSAFE;
     }
 
     public static class ConstructorUtil extends UnsafeUtil implements IImportant {
         public static <T> T bypass(Class<T> clazz) throws Exception {
-            return (T) UNSAFE_PLS_NO_TOUCHY.allocateInstance(clazz);
+            return (T) UNSAFE.allocateInstance(clazz);
         }
     }
 
     public static class MemoryUtil extends UnsafeUtil implements IImportant {
         public static void malloc(long amount) {
-            UNSAFE_PLS_NO_TOUCHY.allocateMemory(amount);
+            UNSAFE.allocateMemory(amount);
         }
 
         public static void realloc(long address, long amount) {
-            UNSAFE_PLS_NO_TOUCHY.reallocateMemory(address, amount);
+            UNSAFE.reallocateMemory(address, amount);
         }
 
         public static void free(long address) {
-            UNSAFE_PLS_NO_TOUCHY.freeMemory(address);
+            UNSAFE.freeMemory(address);
         }
     }
 
     public static class ExceptionUtil extends UnsafeUtil implements IImportant {
         public static void throwExceptionSafely(Exception exception) {
             try {
-                UNSAFE_PLS_NO_TOUCHY.throwException(exception);
+                UNSAFE.throwException(exception);
             } catch (Exception e) {
                 // exception has been handled
             }
         }
 
         public static void performFuckyWucky() {
-            UNSAFE_PLS_NO_TOUCHY.setMemory(0, 0, (byte) 0);
+            UNSAFE.setMemory(0, 0, (byte) 0);
         }
     }
 
