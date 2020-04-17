@@ -20,7 +20,7 @@
   "mixins": [
     "everything.mixins.json"
   ],
-
+  "accessWidener": "nothing.png",
   "depends": {
     "fabricloader": ">=0.7.4",
     "minecraft": "1.15.x"
