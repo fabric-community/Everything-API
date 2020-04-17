@@ -1,8 +1,8 @@
 package io.github.fabriccommunity.everything.api.elegant.world;
 
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
-import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarEnvelope;
 import net.minecraft.world.World;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
 
 public final class IsClient extends ScalarEnvelope<Boolean> {
     public IsClient(World world) {

@@ -1,9 +1,9 @@
 package io.github.fabriccommunity.everything.api.elegant.direction;
 
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.Direction;
+import org.cactoos.Scalar;
 
 public final class DirectionOf implements Scalar<Direction> {
     private final Scalar<Direction> scalar;
@@ -21,7 +21,7 @@ public final class DirectionOf implements Scalar<Direction> {
     }
 
     @Override
-    public Direction get() throws Exception {
-        return scalar.get();
+    public Direction value() throws Exception {
+        return scalar.value();
     }
 }

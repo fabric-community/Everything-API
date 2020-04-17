@@ -53,7 +53,7 @@ public interface EventManager<A> {
 
             @Override
             public IO<Unit> execute(final A input) {
-                return () -> new Ternary<>(handlers::isEmpty, new ScalarOf<>(IO.empty()), new ScalarOf<>(IO.fix(new Reduce<EventHandler<A>>((a, b) -> event -> a.handle(event).andThen(b.handle(event))).apply(handlers)::handle, input).<IO<Unit>>let(IO::flatten))).get();
+                return () -> new Ternary<>(handlers::isEmpty, new ScalarOf<>(IO.empty()), new ScalarOf<>(IO.fix(new Reduce<EventHandler<A>>((a, b) -> event -> a.handle(event).andThen(b.handle(event))).apply(handlers)::handle, input).<IO<Unit>>let(IO::flatten))).value();
             }
         };
     }

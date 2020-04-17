@@ -2,6 +2,8 @@ package io.github.fabriccommunity.everything.api.elegant.scalar;
 
 import io.github.fabriccommunity.everything.api.functional.IO;
 import net.minecraft.util.Lazy;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;

@@ -1,5 +1,7 @@
 package io.github.fabriccommunity.everything.api.elegant.scalar;
 
+import org.cactoos.Scalar;
+
 import java.util.function.BiFunction;
 
 public final class Merged<A, B, C> implements Scalar<C> {
@@ -14,7 +16,7 @@ public final class Merged<A, B, C> implements Scalar<C> {
     }
 
     @Override
-    public C get() throws Exception {
-        return mergingFn.apply(first.get(), second.get());
+    public C value() throws Exception {
+        return mergingFn.apply(first.value(), second.value());
     }
 }

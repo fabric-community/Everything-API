@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything.api.elegant.iterable;
 
-import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
+import org.cactoos.Proc;
 
 /**
  * A for-loop on an Iterable.
@@ -15,9 +15,9 @@ public final class For<A> implements Proc<Iterable<? extends A>> {
     }
 
     @Override
-    public void run(final Iterable<? extends A> input) throws Exception {
+    public void exec(final Iterable<? extends A> input) throws Exception {
         for (A value : input) {
-            proc.run(value);
+            proc.exec(value);
         }
     }
 }

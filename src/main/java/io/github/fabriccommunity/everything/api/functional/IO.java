@@ -2,11 +2,11 @@ package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.object.ExtendedObject;
-import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Memoized;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
 import net.minecraft.util.Lazy;
+import org.cactoos.Proc;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Sticky;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -40,12 +40,12 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
     }
 
     /**
-     * Memoizes this IO using {@link Memoized} and {@link ScalarOf}.
+     * Memoizes this IO using {@link Sticky} and {@link ScalarOf}.
      *
      * @return the memoized IO operation
      */
     default IO<A> memoize() {
-        return of(new Memoized<>(new ScalarOf<>(this)));
+        return of(new Sticky<>(new ScalarOf<>(this)));
     }
 
     /**
@@ -157,7 +157,7 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      * @return the created IO
      */
     static <A> IO<A> of(final Scalar<A> scalar) {
-        return scalar::get;
+        return scalar::value;
     }
 
     /**
@@ -181,7 +181,7 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      * @param <B> the output type
      * @return an IO operation for the computation
      */
-    static <F, A, B> IO<B> fix(final F function, final A input, final BiFunction<? super F, ? super A, ? extends B> executor) {
+    static <F, A, B> IO<B> fix(final F function, final A input, final ThrowingBiFunction<? super F, ? super A, ? extends B> executor) {
         return () -> executor.apply(function, input);
     }
 
@@ -207,7 +207,10 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      * @return an IO operation for the process
      */
     static <A> IO<Unit> fix(final Proc<? super A> proc, final A input) {
-        return fix(proc, input, (f, a) -> Unit.INSTANCE);
+        return fix(proc, input, (f, a) -> {
+            f.exec(a);
+            return Unit.INSTANCE;
+        });
     }
 
     /**

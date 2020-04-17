@@ -29,9 +29,9 @@ abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "openContainer(Lnet/minecraft/container/NameableContainerFactory;)Ljava/util/OptionalInt;", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayNetworkHandler;sendPacket(Lnet/minecraft/network/Packet;)V"), cancellable = true)
     private void onOpenContainer(NameableContainerFactory factory, CallbackInfoReturnable<OptionalInt> info) {
         OpenMenuEvent event = new OpenMenuEvent(container, containerSyncId, factory.getDisplayName(), (ServerPlayerEntity) (Object) this);
-        IO.executeUnsafe(OpenMenuEvent.MANAGER.execute(event).andThen(new Ternary<>(new ScalarOf<>(event.isVetoed()), new ScalarOf<>(IO.of(() -> {
+        IO.executeUnsafe(OpenMenuEvent.MANAGER.execute(event).andThen(IO.of(new Ternary<>(new ScalarOf<>(event.isVetoed()), new ScalarOf<>(IO.of(() -> {
             container = playerContainer;
             info.setReturnValue(OptionalInt.empty());
-        })), new ScalarOf<>(IO.empty())).let(IO::of)));
+        })), new ScalarOf<>(IO.empty())))));
     }
 }

@@ -1,8 +1,8 @@
 package io.github.fabriccommunity.everything.api.object;
 
-import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
 import io.github.fabriccommunity.everything.api.functional.IO;
 import io.github.fabriccommunity.everything.api.functional.ThrowingConsumer;
+import org.cactoos.Proc;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -31,18 +31,15 @@ public interface ExtendedObject<Self> {
     }
 
     default IO<Self> applyIo(final Consumer<? super Self> block) {
-        return () -> {
-            block.accept($());
-            return $();
-        };
+        return () -> apply(block);
     }
 
     default Self apply(final Proc<? super Self> block) {
-        return apply((ThrowingConsumer<Self>) block::run);
+        return apply((ThrowingConsumer<Self>) block::exec);
     }
 
     default IO<Self> applyIo(final Proc<? super Self> block) {
-        return applyIo((ThrowingConsumer<Self>) block::run);
+        return () -> apply(block);
     }
 
     @SuppressWarnings("unchecked")

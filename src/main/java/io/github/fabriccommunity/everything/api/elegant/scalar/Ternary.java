@@ -1,5 +1,8 @@
 package io.github.fabriccommunity.everything.api.elegant.scalar;
 
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
 /**
  * A ternary expression.
  *
@@ -10,7 +13,7 @@ public final class Ternary<A> extends ScalarEnvelope<A> {
         this(() -> condition, ifTrue, ifFalse);
     }
     public Ternary(final Scalar<Boolean> condition, final Scalar<A> ifTrue, final Scalar<A> ifFalse) {
-        this(() -> condition.get() ? ifTrue.get() : ifFalse.get());
+        this(() -> condition.value() ? ifTrue.value() : ifFalse.value());
     }
 
     private Ternary(final Scalar<A> scalar) {

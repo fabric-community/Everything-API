@@ -1,10 +1,10 @@
 package io.github.fabriccommunity.everything.api.elegant.world;
 
-import io.github.fabriccommunity.everything.api.elegant.proc.Proc;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.cactoos.Proc;
+import org.cactoos.Scalar;
 
 public final class SetBlockState implements Proc<World> {
     private final Scalar<BlockPos> pos;
@@ -24,7 +24,7 @@ public final class SetBlockState implements Proc<World> {
     }
 
     @Override
-    public void run(World input) throws Exception {
-        input.setBlockState(pos.get(), state.get());
+    public void exec(World input) throws Exception {
+        input.setBlockState(pos.value(), state.value());
     }
 }

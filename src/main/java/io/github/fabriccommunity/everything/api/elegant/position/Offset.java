@@ -1,17 +1,17 @@
 package io.github.fabriccommunity.everything.api.elegant.position;
 
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
-import io.github.fabriccommunity.everything.api.elegant.scalar.UncheckedScalar;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Unchecked;
 
 public final class Offset extends BlockPos {
     public Offset(final Scalar<BlockPos> pos, final Scalar<Direction> direction, final Scalar<Integer> amount) {
-        this(pos, direction, new UncheckedScalar<>(amount).get());
+        this(pos, direction, new Unchecked<>(amount).value());
     }
 
     public Offset(final Scalar<BlockPos> pos, final Scalar<Direction> direction, final int amount) {
-        this(new UncheckedScalar<>(pos).get(), new UncheckedScalar<>(direction).get(), amount);
+        this(new Unchecked<>(pos).value(), new Unchecked<>(direction).value(), amount);
     }
 
     public Offset(final BlockPos pos, final Direction direction, final int amount) {
