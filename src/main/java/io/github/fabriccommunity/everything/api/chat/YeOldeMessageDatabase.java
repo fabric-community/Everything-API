@@ -1,12 +1,12 @@
 package io.github.fabriccommunity.everything.api.chat;
 
-import java.util.Random;
+import com.github.kilianB.pcg.sync.PcgRR;
 
 public class YeOldeMessageDatabase {
 	
 	public static int getRangedRandom(int min, int max)
     {
-        return min + new Random().nextInt((max - min) + 1);
+        return min + new PcgRR().nextInt((max - min) + 1);
     }
 	
 	public static String getBeginningWords() {

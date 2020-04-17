@@ -4,27 +4,24 @@
   "package": "io.github.fabriccommunity.everything.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "a319fec2123443439bafdfe06d9267d7",
-    "CopperOreFix",
-    "Event",
-    "implementation.event.BlockEventsImpl",
-    "implementation.event.ServerMainImpl",
-    "implementation.event.ServerPlayNetworkHandlerImpl",
-    "MixinContinentLayer",
-    "MixinSetBaseBiomesLayer",
-    "MixinVanillaLayeredBiomeSource",
-    "implementation.event.PlayerManagerImpl"
+    "general.RegistryMixin",
+    "general.ClientPlayNetworkHandlerMixin",
+    "general.PacketByteBufMixin",
+    "general.ContinentLayerMixin",
+    "general.VanillaLayeredBiomeSourceMixin",
+    "general.SetBaseBiomesLayerMixin",
+    "implementation.event.v3.BlockEventsImpl",
+    "implementation.event.v3.PlayerManagerImpl",
+    "implementation.event.v3.ServerMainImpl",
+    "implementation.event.v3.ServerPlayNetworkHandlerImpl"
   ],
   "client": [
-    "ExampleMixin",
-    "MixinClientPlayNetworkHandler",
-    "MixinContinentLayer",
-    "implementation.event.ClientMainImpl",
-    "implementation.event.MinecraftClientImpl",
-    "implementation.event.ClientPlayNetworkHandlerImpl",
+    "implementation.event.v3.ClientMainImpl",
+    "implementation.event.v3.MinecraftClientImpl",
+    "implementation.event.v3.ClientPlayNetworkHandlerImpl",
     "implementation.render.ItemRendererRegistryImpl",
-    "modeinjection/BlockModelsMixin",
-    "modeinjection/ItemModelsMixin"
+    "implementation.model.BlockModelInjectionRegistryImpl",
+    "implementation.model.ItemModelInjectionRegistryImpl",
   ],
   "server": [
     "PacketByteBufMxn"

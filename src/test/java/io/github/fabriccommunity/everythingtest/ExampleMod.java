@@ -2,15 +2,14 @@ package io.github.fabriccommunity.everythingtest;
 
 import com.mojang.datafixers.util.Unit;
 
-import io.github.fabriccommunity.everything.a51cd4448b2346938cf395dcb2cf3229;
-import io.github.fabriccommunity.everything.api.event.vini.Events;
-import io.github.fabriccommunity.everything.api.event.vini.implementation.BlockEvents;
-import io.github.fabriccommunity.everything.api.event.vini.implementation.ClientEvents;
-import io.github.fabriccommunity.everything.api.event.vini.implementation.ServerEvents;
+import io.github.fabriccommunity.everything.api.event.v3.Events;
+import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEvents;
+import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
+import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEvents;
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
-import io.github.fabriccommunity.everything.unsafe.ImprovedUnsafeUtil;
+import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
