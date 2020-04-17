@@ -17,8 +17,8 @@
 
 package io.github.fabriccommunity.everything.api.elegant.direction;
 
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
 import net.minecraft.util.math.Direction;
+import org.cactoos.Scalar;
 
 public final class CounterClockwise implements Scalar<Direction> {
     private final Scalar<Direction> direction;
@@ -32,7 +32,7 @@ public final class CounterClockwise implements Scalar<Direction> {
     }
 
     @Override
-    public Direction get() throws Exception {
-        return direction.get().rotateYCounterclockwise();
+    public Direction value() throws Exception {
+        return direction.value().rotateYCounterclockwise();
     }
 }

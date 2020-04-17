@@ -17,6 +17,8 @@
 
 package io.github.fabriccommunity.everything.api.elegant.proc;
 
+import org.cactoos.Proc;
+
 /**
  * An envelope for {@link Proc}.
  *
@@ -30,7 +32,7 @@ public abstract class ProcEnvelope<A> implements Proc<A> {
     }
 
     @Override
-    public final void run(final A input) throws Exception {
-        proc.run(input);
+    public final void exec(final A input) throws Exception {
+        proc.exec(input);
     }
 }

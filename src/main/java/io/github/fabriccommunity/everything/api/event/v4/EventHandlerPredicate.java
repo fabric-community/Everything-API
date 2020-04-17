@@ -15,24 +15,32 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.proc;
+package io.github.fabriccommunity.everything.api.event.v4;
+
+import io.github.fabriccommunity.everything.api.functional.IO;
 
 /**
- * A for-loop on an Iterable.
+ * Event handler predicates filter whether event handlers are allowed on a manager.
  *
- * @param <A> the value type
+ * @param <A> the event type
  */
-public final class For<A> implements Proc<Iterable<? extends A>> {
-    private final Proc<? super A> proc;
+@FunctionalInterface
+public interface EventHandlerPredicate<A> {
+    /**
+     * Checks whether the handler should be accepted.
+     *
+     * @param handler the handler
+     * @return an IO operation
+     */
+    IO<Boolean> test(EventHandler<A> handler);
 
-    public For(final Proc<? super A> proc) {
-        this.proc = proc;
-    }
-
-    @Override
-    public void run(final Iterable<? extends A> input) throws Exception {
-        for (A value : input) {
-            proc.run(value);
-        }
+    /**
+     * Returns a predicate that rejects null event handlers.
+     *
+     * @param <A> the event type
+     * @return the predicate
+     */
+    static <A> EventHandlerPredicate<A> nonnull() {
+        return handler -> IO.pure(handler != null);
     }
 }

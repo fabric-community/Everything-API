@@ -15,16 +15,26 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.function;
+package io.github.fabriccommunity.everything.api.event.v4;
 
+import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.functional.IO;
 
-public interface ThrowingBiFunction<A, B, C> extends java.util.function.BiFunction<A, B, C> {
-	C applyThrowing(A a, B b) throws Throwable;
-	@Override default C apply(A a, B b) {
-		try {
-			return this.applyThrowing(a, b);
-		} catch(Throwable t) {
-			throw new RuntimeException(t);
-		}
-	}
+/**
+ * Represents an event that can be vetoed by a handler.
+ */
+public interface VetoableEvent {
+    /**
+     * Returns true if this event has been vetoed, false otherwise.
+     *
+     * @return whether this event has been vetoed
+     */
+    IO<Boolean> isVetoed();
+
+    /**
+     * Vetoes this event.
+     *
+     * @return the IO operation
+     */
+    IO<Unit> veto();
 }

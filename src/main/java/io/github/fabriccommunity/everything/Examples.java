@@ -17,7 +17,6 @@
 
 package io.github.fabriccommunity.everything;
 
-import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.event.v3.Events;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEvents;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
@@ -29,7 +28,6 @@ import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
 import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -50,16 +48,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 public class Examples implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Everything-API");
-
+  
 	@Override
 	public void onInitialize() {
 		System.out.println("Hello Fabric world!");
@@ -69,8 +63,6 @@ public class Examples implements ModInitializer {
 			// no need!
 		}
 
-		LOGGER.info("Executing functional initializers.");
-		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
 		TestFrames.testOrFuck();
 
 		ImplementedInventory inventory = new ImplementedInventory(9);
@@ -137,26 +129,5 @@ public class Examples implements ModInitializer {
 				System.out.println("awn poor fella quit :'(");
 			}
 		});
-	}
-
-	static <A> IO<Unit> runInitializers(String id, Function<A, IO<Unit>> stepGetter, Class<A> clazz) {
-		return () -> {
-			final FabricLoader loader = FabricLoader.getInstance();
-			final List<A> initializers = loader.getEntrypoints(id, clazz);
-
-			for (A initializer : initializers) {
-				final IO<Unit> step;
-
-				try {
-					step = stepGetter.apply(initializer);
-				} catch (Exception e) {
-					throw new RuntimeException("Could not initialize entrypoint " + initializer + "!", e);
-				}
-
-				step.execute();
-			}
-
-			return Unit.INSTANCE;
-		};
 	}
 }

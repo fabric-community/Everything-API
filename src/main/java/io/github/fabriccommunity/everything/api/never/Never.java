@@ -15,9 +15,24 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.function;
+package io.github.fabriccommunity.everything.api.never;
 
+/**
+ * Never is a type with no values.
+ */
+public enum Never {
+    ;
 
-public interface TriFunction<A, B, C, D> {
-	D apply(A a, B b, C c);
+    /**
+     * Casts this instance to the specified type.
+     *
+     * <p>Completely safe because this type does not have values.
+     *
+     * @param <A> the target type
+     * @return this instance as the target type
+     */
+    @SuppressWarnings("unchecked")
+    public <A> A as() {
+        return (A) this;
+    }
 }

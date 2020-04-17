@@ -15,18 +15,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.proc;
+package io.github.fabriccommunity.everything.api.event.v4;
+
+import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.functional.IO;
 
 /**
- * A process.
- *
- * @param <A> the input type
+ * A simple implementation of {@link VetoableEvent}.
  */
-public interface Proc<A> {
-    /**
-     * Runs the process.
-     *
-     * @param input the input parameter
-     */
-    void run(A input) throws Exception;
+public abstract class AbstractVetoableEvent implements VetoableEvent {
+    private boolean vetoed = false;
+
+    @Override
+    public IO<Boolean> isVetoed() {
+        return () -> vetoed;
+    }
+
+    @Override
+    public IO<Unit> veto() {
+        return () -> {
+            vetoed = true;
+            return Unit.INSTANCE;
+        };
+    }
 }

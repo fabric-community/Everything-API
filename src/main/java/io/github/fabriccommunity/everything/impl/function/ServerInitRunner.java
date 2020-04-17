@@ -15,26 +15,18 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.proc;
+package io.github.fabriccommunity.everything.impl.function;
 
-/**
- * An unchecked Proc.
- *
- * @param <A> the input type
- */
-public final class UncheckedProc<A> implements Proc<A> {
-    private final Proc<A> proc;
+import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
+import io.github.fabriccommunity.everything.api.functional.IO;
+import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
-    public UncheckedProc(final Proc<A> proc) {
-        this.proc = proc;
-    }
-
+@Environment(EnvType.SERVER)
+public final class ServerInitRunner implements DedicatedServerModInitializer {
     @Override
-    public final void run(final A input) {
-        try {
-            proc.run(input);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void onInitializeServer() {
+        IO.executeUnsafe(CommonInitRunner.runInitializers("everything-api/functional/server", FunctionalModInitializer.ServerOnly::onInitializeServer, FunctionalModInitializer.ServerOnly.class));
     }
 }
