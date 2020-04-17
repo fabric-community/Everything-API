@@ -24,6 +24,9 @@ public final class SetBlockEvent {
     private static final Set<Receiver> receivers = new HashSet<>();
     private static final Set<PostReceiver> postReceivers = new HashSet<>();
 
+    private SetBlockEvent() {
+    }
+
     /**
      * Register a {@link Modifier}. Registering an already registered handler
      * will do nothing.
