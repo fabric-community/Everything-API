@@ -1,6 +1,5 @@
 package io.github.fabriccommunity.everything.api.asm.mixin;
 
-import io.github.fabriccommunity.everything.api.console.PrintManager;
 import io.github.fabriccommunity.everything.api.console.PrintManagerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.*;
@@ -50,7 +49,7 @@ public class d1d9553d7d044a6694bb81da9f3ab947 implements IMixinConfigPlugin {
 								if (c56a3f2113ef4ae3b8806f596a8e4971.instructions.get(b12985e1ad644de6b9b1062830095153) instanceof LabelNode) {
 									AbstractInsnNode e6ab3b8496e248f09c4172c190951118 = c56a3f2113ef4ae3b8806f596a8e4971.instructions.get(b12985e1ad644de6b9b1062830095153);
 									c56a3f2113ef4ae3b8806f596a8e4971.instructions.insertBefore(e6ab3b8496e248f09c4172c190951118, new LabelNode());
-									c56a3f2113ef4ae3b8806f596a8e4971.instructions.insertBefore(e6ab3b8496e248f09c4172c190951118, new MethodInsnNode(184, "io/github/fabriccommunity/everything/api/FPSAPI", "fuck", "()V"));
+									c56a3f2113ef4ae3b8806f596a8e4971.instructions.insertBefore(e6ab3b8496e248f09c4172c190951118, new MethodInsnNode(184, "io/github/fabriccommunity/everything/api/render/FrameManager", "fuck", "()V"));
 									return;
 								}
 							}
