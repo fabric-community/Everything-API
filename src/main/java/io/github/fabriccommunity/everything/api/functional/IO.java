@@ -1,6 +1,7 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.never.Never;
 import io.github.fabriccommunity.everything.api.object.ExtendedObject;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
 import net.minecraft.util.Lazy;
@@ -248,7 +249,7 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      * @return the {@code empty} IO operation
      */
     static IO<Unit> empty() {
-        return DefaultIO.EMPTY;
+        return EmptyIO.INSTANCE;
     }
 
     /**
@@ -258,7 +259,7 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      */
     @SuppressWarnings("unchecked")
     static <A> IO<A> never() {
-        return (IO<A>) DefaultIO.NEVER;
+        return (IO<A>) NeverIO.NEVER;
     }
 
     /**
@@ -268,33 +269,36 @@ public interface IO<A> extends ExtendedObject<IO<A>> {
      */
     @SuppressWarnings("unchecked")
     static <A> IO<A> eternal() {
-        return (IO<A>) DefaultIO.ETERNAL;
+        return (IO<A>) NeverIO.ETERNAL;
     }
 }
 
-enum DefaultIO implements IO<Unit> {
-    EMPTY {
-        @Override
-        public Unit execute() {
-            return Unit.INSTANCE;
-        }
-    },
+enum EmptyIO implements IO<Unit> {
+    INSTANCE;
+
+    @Override
+    public Unit execute() {
+        return Unit.INSTANCE;
+    }
+}
+
+enum NeverIO implements IO<Never> {
     NEVER {
         @Override
-        public Unit execute() throws UnsupportedOperationException {
+        public Never execute() throws UnsupportedOperationException {
             throw new UnsupportedOperationException("IO.never does not have a value.");
         }
     },
     ETERNAL {
         @Override
-        public Unit execute() throws Exception {
+        public Never execute() throws IllegalStateException {
             while (true) {
                 // Execute eternally
                 if (false) {
                     break;
                 }
             }
-            return NEVER.execute();
+            throw new IllegalStateException("Did not execute eternally.");
         }
     };
 }
