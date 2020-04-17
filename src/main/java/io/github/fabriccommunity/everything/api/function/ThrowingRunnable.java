@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.api.functions;
+package io.github.fabriccommunity.everything.api.function;
 
 
 public interface ThrowingRunnable extends Runnable {

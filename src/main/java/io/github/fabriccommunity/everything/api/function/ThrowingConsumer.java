@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.api.functions;
+package io.github.fabriccommunity.everything.api.function;
 
 
 public interface ThrowingConsumer<A> extends java.util.function.Consumer<A> {

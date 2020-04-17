@@ -1,7 +1,7 @@
-package io.github.fabriccommunity.everything.api.functions;
+package io.github.fabriccommunity.everything.api.function;
 
 
-public interface ThrowingPentaConsumer<A, B, C, D, E> extends io.github.fabriccommunity.everything.api.functions.PentaConsumer<A, B, C, D, E> {
+public interface ThrowingPentaConsumer<A, B, C, D, E> extends io.github.fabriccommunity.everything.api.function.PentaConsumer<A, B, C, D, E> {
 	void acceptThrowing(A a, B b, C c, D d, E e) throws Throwable;
 	@Override default void accept(A a, B b, C c, D d, E e) {
 		try {

@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.api.functions;
+package io.github.fabriccommunity.everything.api.function;
 
 
 public interface ThrowingSupplier<A> extends java.util.function.Supplier<A> {

@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything.api.unsafe;
 
-import io.github.fabriccommunity.everything.api.functions.GeneralFunction;
+import io.github.fabriccommunity.everything.api.function.GeneralFunction;
 import sun.misc.Unsafe;
 import java.lang.invoke.LambdaMetafactory;
 import java.lang.invoke.MethodHandle;

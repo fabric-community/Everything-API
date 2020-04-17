@@ -1,7 +1,7 @@
-package io.github.fabriccommunity.everything.api.functions;
+package io.github.fabriccommunity.everything.api.function;
 
 
-public interface ThrowingHexaFunction<A, B, C, D, E, F, G> extends io.github.fabriccommunity.everything.api.functions.HexaFunction<A, B, C, D, E, F, G> {
+public interface ThrowingHexaFunction<A, B, C, D, E, F, G> extends io.github.fabriccommunity.everything.api.function.HexaFunction<A, B, C, D, E, F, G> {
 	G applyThrowing(A a, B b, C c, D d, E e, F f) throws Throwable;
 	@Override default G apply(A a, B b, C c, D d, E e, F f) {
 		try {
