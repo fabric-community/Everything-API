@@ -1,10 +1,12 @@
-package io.github.fabriccommunity.everything;
+package io.github.fabriccommunity.everythingtest;
 
 import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.event.implementation.BlockEvents;
-import io.github.fabriccommunity.everything.api.event.implementation.ClientEvents;
-import io.github.fabriccommunity.everything.api.event.Events;
-import io.github.fabriccommunity.everything.api.event.implementation.ServerEvents;
+
+import io.github.fabriccommunity.everything.a51cd4448b2346938cf395dcb2cf3229;
+import io.github.fabriccommunity.everything.api.event.vini.Events;
+import io.github.fabriccommunity.everything.api.event.vini.implementation.BlockEvents;
+import io.github.fabriccommunity.everything.api.event.vini.implementation.ClientEvents;
+import io.github.fabriccommunity.everything.api.event.vini.implementation.ServerEvents;
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;

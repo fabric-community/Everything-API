@@ -1,11 +1,12 @@
-package io.github.fabriccommunity.everything.api.event.implementation;
+package io.github.fabriccommunity.everything.api.event.vini.implementation;
 
-import io.github.fabriccommunity.everything.api.event.Event;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
 import java.util.Objects;
+
+import io.github.fabriccommunity.everything.api.event.vini.Event;
 
 public class ServerEvents {
 	public interface MAIN extends Event {

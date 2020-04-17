@@ -21,8 +21,7 @@
     "implementation.render.ItemRendererRegistryImpl",
     "modeinjection/BlockModelsMixin",
     "modeinjection/ItemModelsMixin",
-    "MixinClientPlayNetworkHandler",
-    "ExampleMixin"
+    "MixinClientPlayNetworkHandler"
   ],
   "server":
   [

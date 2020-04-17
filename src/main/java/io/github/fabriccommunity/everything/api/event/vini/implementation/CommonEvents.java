@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.api.event.implementation;
+package io.github.fabriccommunity.everything.api.event.vini.implementation;
 
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 

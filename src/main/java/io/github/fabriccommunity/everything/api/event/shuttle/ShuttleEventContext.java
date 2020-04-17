@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.event.shuttle;
+package io.github.fabriccommunity.everything.api.event.shuttle;
 
 public interface ShuttleEventContext<T extends ShuttleEventListener> {
 	/**

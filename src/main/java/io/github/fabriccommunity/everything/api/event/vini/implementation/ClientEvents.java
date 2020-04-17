@@ -1,10 +1,11 @@
-package io.github.fabriccommunity.everything.api.event.implementation;
+package io.github.fabriccommunity.everything.api.event.vini.implementation;
 
-import io.github.fabriccommunity.everything.api.event.Event;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 
 import java.util.Objects;
+
+import io.github.fabriccommunity.everything.api.event.vini.Event;
 
 public class ClientEvents {
 	public interface MAIN extends Event {
