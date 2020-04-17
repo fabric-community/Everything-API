@@ -8,7 +8,7 @@ public abstract class AbstractVetoableEvent implements VetoableEvent {
 
     @Override
     public IO<Boolean> isVetoed() {
-        return IO.pure(vetoed);
+        return () -> vetoed;
     }
 
     @Override

@@ -18,7 +18,15 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": ["io.github.fabriccommunity.everything.api.event.juuz.events.EventTest"]
+    "main": [
+      "io.github.fabriccommunity.everything.impl.function.CommonInitRunner"
+    ],
+    "client": [
+      "io.github.fabriccommunity.everything.impl.function.ClientInitRunner"
+    ],
+    "server": [
+      "io.github.fabriccommunity.everything.impl.function.ServerInitRunner"
+    ]
   },
   "mixins": [
     "everything.mixins.json"

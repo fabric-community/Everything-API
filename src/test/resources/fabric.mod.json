@@ -19,12 +19,6 @@
   "entrypoints": {
     "main": [
       "io.github.fabriccommunity.everythingtest.ExampleMod"
-    ],
-    "client": [
-      "io.github.fabriccommunity.everythingtest.ExampleModClient"
-    ],
-    "server": [
-      "io.github.fabriccommunity.everythingtest.ExampleModServer"
     ]
   },
   

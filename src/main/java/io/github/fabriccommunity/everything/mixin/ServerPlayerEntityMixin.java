@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -20,21 +21,19 @@ import java.util.OptionalInt;
 
 @Mixin(ServerPlayerEntity.class)
 abstract class ServerPlayerEntityMixin extends PlayerEntity {
+    @Shadow
+    private int containerSyncId;
+
     private ServerPlayerEntityMixin(World world, GameProfile profile) {
         super(world, profile);
     }
 
-    @Inject(method = "openContainer(Lnet/minecraft/container/NameableContainerFactory;)Ljava/util/OptionalInt;", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "openContainer(Lnet/minecraft/container/NameableContainerFactory;)Ljava/util/OptionalInt;", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayNetworkHandler;sendPacket(Lnet/minecraft/network/Packet;)V"), cancellable = true)
     private void onOpenContainer(NameableContainerFactory factory, CallbackInfoReturnable<OptionalInt> info) {
-        OptionalInt syncId = info.getReturnValue();
-        if (syncId.isPresent()) {
-            OpenMenuEvent event = new OpenMenuEvent(container, syncId.getAsInt(), factory.getDisplayName(), (ServerPlayerEntity) (Object) this);
-            IO.executeUnsafe(OpenMenuEvent.MANAGER.execute(event).andThen(new Ternary<>(new ScalarOf<>(event.isVetoed()), new ScalarOf<>(IO.of(() -> {
-                container = playerContainer;
-                info.setReturnValue(OptionalInt.empty());
-            })), new ScalarOf<>(IO.empty())).let(IO::of)));
-
-            OpenMenuEvent.MANAGER.register(VetoableEvent::veto);
-        }
+        OpenMenuEvent event = new OpenMenuEvent(container, containerSyncId, factory.getDisplayName(), (ServerPlayerEntity) (Object) this);
+        IO.executeUnsafe(OpenMenuEvent.MANAGER.execute(event).andThen(new Ternary<>(new ScalarOf<>(event.isVetoed()), new ScalarOf<>(IO.of(() -> {
+            container = playerContainer;
+            info.setReturnValue(OptionalInt.empty());
+        })), new ScalarOf<>(IO.empty())).let(IO::of)));
     }
 }
