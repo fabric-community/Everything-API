@@ -30,7 +30,7 @@ public final class SetBlockEvent {
      *
      * @param modifier the {@link Modifier} to register
      */
-    public static void register(Modifier modifier) {
+    public static void registerModifier(Modifier modifier) {
         modifiers.add(modifier);
     }
 
@@ -40,7 +40,7 @@ public final class SetBlockEvent {
      *
      * @param receiver the {@link Receiver} to register
      */
-    public static void register(Receiver receiver) {
+    public static void registerReceiver(Receiver receiver) {
         receivers.add(receiver);
     }
 
@@ -50,7 +50,7 @@ public final class SetBlockEvent {
      *
      * @param postReceiver the {@link PostReceiver} to register
      */
-    public static void register(PostReceiver postReceiver) {
+    public static void registerPostReceiver(PostReceiver postReceiver) {
         postReceivers.add(postReceiver);
     }
 
@@ -226,6 +226,11 @@ public final class SetBlockEvent {
         @Override
         public boolean isCancelled() {
             return cancelled;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("Data { world: %s, pos: %s, state: %s, flags: %d, cancelled: %s }", world, pos, state, flags, cancelled);
         }
 
     }
