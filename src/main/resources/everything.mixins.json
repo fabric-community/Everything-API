@@ -15,7 +15,8 @@
     "implementation.event.v3.BlockEventsImpl",
     "implementation.event.v3.PlayerManagerImpl",
     "implementation.event.v3.ServerMainImpl",
-    "implementation.event.v3.ServerPlayNetworkHandlerImpl"
+    "implementation.event.v3.ServerPlayNetworkHandlerImpl",
+    "implementation.level.SetBlockEventMixin"
   ],
   "client": [
     "implementation.event.v3.ClientMainImpl",
