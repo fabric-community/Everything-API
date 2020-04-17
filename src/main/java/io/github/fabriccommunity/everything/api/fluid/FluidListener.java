@@ -1,4 +1,4 @@
-package arno.common.api.fluid;
+package io.github.fabriccommunity.everything.api.fluid;
 
 public interface FluidListener {
     void onMovement();

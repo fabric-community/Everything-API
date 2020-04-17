@@ -1,4 +1,4 @@
-package arno.common.api.fluid;
+package io.github.fabriccommunity.everything.api.fluid;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.nbt.CompoundTag;
