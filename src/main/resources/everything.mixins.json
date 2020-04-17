@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.fabriccommunity.everything.mixin",
+  "plugin": "io.github.fabriccommunity.d1d9553d7d044a6694bb81da9f3ab947",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
@@ -16,7 +17,6 @@
     "implementation.event.PlayerManagerImpl"
   ],
   "client": [
-    "ExampleMixin",
     "MixinClientPlayNetworkHandler",
     "MixinContinentLayer",
     "implementation.event.ClientMainImpl",
