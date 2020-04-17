@@ -13,25 +13,20 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
+  "entrypoints": {
+    "main": [
+      "io.github.fabriccommunity.everything.Examples"
+    ]
+  },
+
   "license": "LGPL-3.0",
   "icon": "assets/everything/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "io.github.fabriccommunity.everything.ExampleMod"
-    ],
-    "client": [
-      "io.github.fabriccommunity.everything.ExampleModClient"
-    ],
-    "server": [
-      "io.github.fabriccommunity.everything.ExampleModServer"
-    ]
-  },
   "mixins": [
     "everything.mixins.json"
   ],
-
+  "accessWidener": "nothing.png",
   "depends": {
     "fabricloader": ">=0.7.4",
     "minecraft": "1.15.x"
