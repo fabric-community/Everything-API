@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything.mixin.implementation.render;
 
-import io.github.fabriccommunity.everything.api.render.ItemRendererRegistry;
+import io.github.fabriccommunity.everything.api.render.registry.ItemRendererRegistry;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
