@@ -5,19 +5,19 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
+    "CopperOreFix",
     "Event",
-    "MixinVanillaLayeredBiomeSource",
+    "MixinContinentLayer",
     "MixinSetBaseBiomesLayer",
-    "MixinContinentLayer"
+    "MixinVanillaLayeredBiomeSource"
   ],
   "client": [
     "ExampleMixin",
+    "MixinClientPlayNetworkHandler",
     "modeinjection/BlockModelsMixin",
-    "modeinjection/ItemModelsMixin",
-    "MixinClientPlayNetworkHandler"
+    "modeinjection/ItemModelsMixin"
   ],
-  "server":
-  [
+  "server": [
     "PacketByteBufMxn"
   ],
   "injectors": {
