@@ -14,6 +14,8 @@ import java.lang.reflect.Field;
 
 import sun.misc.Unsafe;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public class UnsafeUtil {
     // constants
     private static final Field LOOKUP_CLASS_ALLOWED_MODES_FIELD;
@@ -30,6 +32,13 @@ public class UnsafeUtil {
     public static final boolean EIGHT_BYTE_KLASS;
     public static final long CLASS_KLASS_OFFSET;
     static {
+        runGc();
+        runGc();
+        runGc();
+        runGc();
+        runGc();
+        runGc();
+
         try {
             // unsafe
             Field f = Unsafe.class.getDeclaredField("theUnsafe");

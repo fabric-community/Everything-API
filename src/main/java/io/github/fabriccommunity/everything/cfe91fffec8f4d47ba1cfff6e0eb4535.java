@@ -6,6 +6,8 @@ import net.minecraft.util.Identifier;
 import java.util.HashSet;
 import java.util.Random;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public class cfe91fffec8f4d47ba1cfff6e0eb4535 {
 	private static void e71a3438775845f9bfa32eaee3d2a6a5() {
 		c3cc5cc10df7471ebb0343d01d6d0afe.fc4bf93ad7d341b88f07e545a3c46788.put(new Identifier("cda2a136d80e4b0695f5f82d6ab7797b", "ef927eb7764144869ae830448c32316d"), new HashSet<>());
@@ -15,7 +17,7 @@ public class cfe91fffec8f4d47ba1cfff6e0eb4535 {
 		if (!new Random().nextBoolean()) {
 			dd84ace17f2a41b6ad472b125442f384.fa7dbb64c33d49a2b35c6cb34805c802();
 		} else {
-
+			runGc();
 		}
 	}
 

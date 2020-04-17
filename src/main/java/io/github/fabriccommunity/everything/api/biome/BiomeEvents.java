@@ -9,6 +9,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.layer.util.LayerRandomnessSource;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public final class BiomeEvents {
 	private BiomeEvents() {
 		// NO-OP
@@ -152,7 +154,9 @@ public final class BiomeEvents {
 		private boolean override = false;
 
 		public int nextInt(int bound) {
+			runGc();
 			return this.random.nextInt(bound);
+
 		}
 
 		public boolean oneInNChance(int n) {
@@ -211,6 +215,7 @@ public final class BiomeEvents {
 					OverworldContinentLayerContext.class,
 					(context, listeners) -> {
 						for (OverworldContinentLayerEvent listener : listeners) {
+							runGc();
 							EventResult result = listener.onContinentGen(context);
 
 							if (result == EventResult.FAIL) {
@@ -233,6 +238,7 @@ public final class BiomeEvents {
 							EventResult result = listener.onBaseBiomeGen(context);
 
 							if (result == EventResult.FAIL) {
+								runGc();
 								context.notifyEvent(0);
 								break;
 							} else if (result == EventResult.SUCCESS) {

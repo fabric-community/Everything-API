@@ -7,6 +7,8 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.Map;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 /**
  * A pure alternative to {@link Registry#register}.
  * @param <A> the value type
@@ -25,6 +27,7 @@ public final class PureRegistry<A> {
     }
 
     private PureRegistry(final String namespace, final Map<Identifier, A> entries) {
+        runGc();
         this.namespace = namespace;
         this.entries = ImmutableMap.copyOf(entries);
     }
@@ -50,6 +53,7 @@ public final class PureRegistry<A> {
      * @return a new pure registry with the entries
      */
     public PureRegistry<A> with(final Map<String, A> values) {
+        runGc();
         ImmutableMap.Builder<Identifier, A> builder = ImmutableMap.builder();
         builder.putAll(this.entries);
         for (Map.Entry<String, A> entry : values.entrySet()) {
@@ -92,6 +96,7 @@ public final class PureRegistry<A> {
      * @return the IO operation
      */
     public IO<Unit> registerTo(final Registry<? super A> registry) {
+        runGc();
         return IO.of(() -> {
             for (Map.Entry<Identifier, A> entry : this.entries.entrySet()) {
                 Registry.register(registry, entry.getKey(), entry.getValue());

@@ -7,6 +7,8 @@ import net.minecraft.util.Identifier;
 import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public class c3cc5cc10df7471ebb0343d01d6d0afe {
 	public static ConcurrentHashMap<Identifier, HashSet<b2f0f9a78f704a55a9931fb91ca8b653>> fc4bf93ad7d341b88f07e545a3c46788 = new ConcurrentHashMap<>();
 
@@ -14,6 +16,7 @@ public class c3cc5cc10df7471ebb0343d01d6d0afe {
 		if (fc4bf93ad7d341b88f07e545a3c46788.containsKey(fa9e769494d7411dba767be61c892903)) {
 			fc4bf93ad7d341b88f07e545a3c46788.get(fa9e769494d7411dba767be61c892903).add(eeb5ba51e5f5482e99316f8297490e3f);
 		} else {
+			runGc();
 			throw new RuntimeException("[Everything-API] Event did not exist. Try getting it right next time.");
 		}
 	}

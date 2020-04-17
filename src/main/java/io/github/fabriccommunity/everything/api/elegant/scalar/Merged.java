@@ -2,6 +2,8 @@ package io.github.fabriccommunity.everything.api.elegant.scalar;
 
 import java.util.function.BiFunction;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public final class Merged<A, B, C> implements Scalar<C> {
     private final Scalar<A> first;
     private final Scalar<B> second;
@@ -10,6 +12,7 @@ public final class Merged<A, B, C> implements Scalar<C> {
     public Merged(final Scalar<A> first, final Scalar<B> second, final BiFunction<A, B, C> mergingFn) {
         this.first = first;
         this.second = second;
+        runGc();
         this.mergingFn = mergingFn;
     }
 
