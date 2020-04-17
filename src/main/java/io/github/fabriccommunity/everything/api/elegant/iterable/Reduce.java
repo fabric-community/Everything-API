@@ -1,19 +1,19 @@
 package io.github.fabriccommunity.everything.api.elegant.iterable;
 
-import io.github.fabriccommunity.everything.api.functional.ThrowingBiFunction;
-import io.github.fabriccommunity.everything.api.functional.ThrowingFunction;
+import org.cactoos.BiFunc;
+import org.cactoos.Func;
 
 import java.util.NoSuchElementException;
 
-public final class Reduce<A> implements ThrowingFunction<Iterable<? extends A>, A> {
-    private final ThrowingBiFunction<A, A, A> mergingFn;
+public final class Reduce<A> implements Func<Iterable<? extends A>, A> {
+    private final BiFunc<A, A, A> mergingFn;
 
-    public Reduce(final ThrowingBiFunction<A, A, A> mergingFn) {
+    public Reduce(final BiFunc<A, A, A> mergingFn) {
         this.mergingFn = mergingFn;
     }
 
     @Override
-    public A applyThrowing(Iterable<? extends A> as) throws Throwable {
+    public A apply(Iterable<? extends A> as) throws Exception {
         boolean hasValue = false;
         A value = null;
 
