@@ -5,26 +5,28 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
+    "CopperOreFix",
     "Event",
-    "MixinVanillaLayeredBiomeSource",
-    "MixinSetBaseBiomesLayer",
-    "MixinContinentLayer",
     "implementation.event.BlockEventsImpl",
     "implementation.event.ServerMainImpl",
     "implementation.event.ServerPlayNetworkHandlerImpl",
+    "MixinContinentLayer",
+    "MixinSetBaseBiomesLayer",
+    "MixinVanillaLayeredBiomeSource",
     "implementation.event.PlayerManagerImpl"
   ],
   "client": [
+    "ExampleMixin",
+    "MixinClientPlayNetworkHandler",
+    "MixinContinentLayer",
     "implementation.event.ClientMainImpl",
     "implementation.event.MinecraftClientImpl",
     "implementation.event.ClientPlayNetworkHandlerImpl",
     "implementation.render.ItemRendererRegistryImpl",
     "modeinjection/BlockModelsMixin",
-    "modeinjection/ItemModelsMixin",
-    "MixinClientPlayNetworkHandler"
+    "modeinjection/ItemModelsMixin"
   ],
-  "server":
-  [
+  "server": [
     "PacketByteBufMxn"
   ],
   "injectors": {
