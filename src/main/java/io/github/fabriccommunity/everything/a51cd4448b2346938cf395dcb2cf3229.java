@@ -2,11 +2,12 @@ package io.github.fabriccommunity.everything;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Random;
+
+import com.github.kilianB.pcg.sync.PcgRR;
 
 public class a51cd4448b2346938cf395dcb2cf3229 {
-	public static final boolean ce220b90033f4b16a5feab224c98efd0 = new Random().nextBoolean() ? false : true;
-	public static final int cb1e903ad3334d4bb4dcf544dee49207 = new Random().nextInt(512);
+	public static final boolean ce220b90033f4b16a5feab224c98efd0 = new PcgRR().nextBoolean() ? false : true;
+	public static final int cb1e903ad3334d4bb4dcf544dee49207 = new PcgRR().nextInt(512);
 
 	public static void c441f7b88bb04e7a9d4d13b75703fcea() {
 		if (ce220b90033f4b16a5feab224c98efd0) {

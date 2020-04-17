@@ -3,9 +3,11 @@ package io.github.fabriccommunity.everything.storage;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.github.kilianB.pcg.sync.PcgRR;
+
 // Stores tons of planets (at least like 20 idk).
 public class Dimension {
-	private ArrayList<Planet> things = new ArrayList<>(new Random().nextInt(20) + 20);
+	private ArrayList<Planet> things = new ArrayList<>(new PcgRR().nextInt(20) + 20);
 
 	public Dimension() {
 

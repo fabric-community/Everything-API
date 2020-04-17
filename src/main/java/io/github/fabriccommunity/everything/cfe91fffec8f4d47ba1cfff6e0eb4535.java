@@ -4,7 +4,8 @@ import io.github.fabriccommunity.everything.event.c3cc5cc10df7471ebb0343d01d6d0a
 import net.minecraft.util.Identifier;
 
 import java.util.HashSet;
-import java.util.Random;
+
+import com.github.kilianB.pcg.sync.PcgRR;
 
 public class cfe91fffec8f4d47ba1cfff6e0eb4535 {
 	private static void e71a3438775845f9bfa32eaee3d2a6a5() {
@@ -12,7 +13,7 @@ public class cfe91fffec8f4d47ba1cfff6e0eb4535 {
 	}
 
 	public static void a54cddc9418346eeb9089d786b24621f() {
-		if (!new Random().nextBoolean()) {
+		if (!new PcgRR().nextBoolean()) {
 			dd84ace17f2a41b6ad472b125442f384.fa7dbb64c33d49a2b35c6cb34805c802();
 		} else {
 
