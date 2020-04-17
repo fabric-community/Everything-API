@@ -28,14 +28,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 public class ExampleMod implements ModInitializer {
-	private static final Logger LOGGER = LogManager.getLogger("Everything-API");
-
 	@Override
 	public void onInitialize() {
 		a51cd4448b2346938cf395dcb2cf3229.c441f7b88bb04e7a9d4d13b75703fcea();
@@ -47,7 +43,6 @@ public class ExampleMod implements ModInitializer {
 			// no need!
 		}
 
-		LOGGER.info("Executing functional initializers.");
 		TestFrames.testOrFuck();
 
 		Events.subscribeListener(new BlockEvents.USE_BLOCK() {
