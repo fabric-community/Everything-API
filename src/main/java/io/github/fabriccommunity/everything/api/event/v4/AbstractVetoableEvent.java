@@ -20,6 +20,9 @@ package io.github.fabriccommunity.everything.api.event.v4;
 import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.functional.IO;
 
+/**
+ * A simple implementation of {@link VetoableEvent}.
+ */
 public abstract class AbstractVetoableEvent implements VetoableEvent {
     private boolean vetoed = false;
 

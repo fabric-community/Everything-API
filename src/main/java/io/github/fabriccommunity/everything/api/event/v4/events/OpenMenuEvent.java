@@ -27,6 +27,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+/**
+ * An event that is fired when a {@link net.minecraft.container.NameableContainerFactory} is opened.
+ */
 public final class OpenMenuEvent extends AbstractVetoableEvent {
     public static final EventManager<OpenMenuEvent> MANAGER = EventManager.create();
 

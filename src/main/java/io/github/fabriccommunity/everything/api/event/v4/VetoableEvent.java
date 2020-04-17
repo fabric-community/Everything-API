@@ -20,8 +20,21 @@ package io.github.fabriccommunity.everything.api.event.v4;
 import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.functional.IO;
 
+/**
+ * Represents an event that can be vetoed by a handler.
+ */
 public interface VetoableEvent {
+    /**
+     * Returns true if this event has been vetoed, false otherwise.
+     *
+     * @return whether this event has been vetoed
+     */
     IO<Boolean> isVetoed();
 
+    /**
+     * Vetoes this event.
+     *
+     * @return the IO operation
+     */
     IO<Unit> veto();
 }

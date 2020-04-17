@@ -19,10 +19,27 @@ package io.github.fabriccommunity.everything.api.event.v4;
 
 import io.github.fabriccommunity.everything.api.functional.IO;
 
+/**
+ * Event handler predicates filter whether event handlers are allowed on a manager.
+ *
+ * @param <A> the event type
+ */
 @FunctionalInterface
 public interface EventHandlerPredicate<A> {
+    /**
+     * Checks whether the handler should be accepted.
+     *
+     * @param handler the handler
+     * @return an IO operation
+     */
     IO<Boolean> test(EventHandler<A> handler);
 
+    /**
+     * Returns a predicate that rejects null event handlers.
+     *
+     * @param <A> the event type
+     * @return the predicate
+     */
     static <A> EventHandlerPredicate<A> nonnull() {
         return handler -> IO.pure(handler != null);
     }

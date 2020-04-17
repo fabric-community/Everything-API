@@ -26,13 +26,44 @@ import io.github.fabriccommunity.everything.api.functional.IO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An event manager holds event handlers and dispatches events.
+ * @param <A> the event type
+ */
 public interface EventManager<A> {
-    IO<Unit> register(EventHandler<A> handler);
+    /**
+     * Registers an event handler.
+     *
+     * @param handler the handler
+     * @return the IO operation that says whether registration was successful
+     */
+    IO<Boolean> register(EventHandler<A> handler);
 
+    /**
+     * Registers an event handler predicate that checks
+     * whether an event handler can be registered.
+     *
+     * @param predicate the predicate
+     * @return the IO operation
+     */
     IO<Unit> registerEventHandlerPredicate(EventHandlerPredicate<A> predicate);
 
+    /**
+     * Executes all registered handlers for an event.
+     *
+     * @param event the event
+     * @return the IO operation
+     */
     IO<Unit> execute(A event);
 
+    /**
+     * Creates a new event manager.
+     *
+     * <p>Instances created using this method have {@link EventHandlerPredicate#nonnull()} already registered.
+     *
+     * @param <A> the event type
+     * @return the created manager
+     */
     static <A> EventManager<A> create() {
         return new EventManager<A>() {
             private final List<EventHandler<A>> handlers = new ArrayList<>();
@@ -44,8 +75,8 @@ public interface EventManager<A> {
             }
 
             @Override
-            public IO<Unit> register(final EventHandler<A> handler) {
-                final IO<IO<Unit>> main = () -> {
+            public IO<Boolean> register(final EventHandler<A> handler) {
+                final IO<IO<Boolean>> main = () -> {
                     final IO<Unit> addingHandler = () -> {
                         handlers.add(handler);
                         return Unit.INSTANCE;
@@ -55,7 +86,7 @@ public interface EventManager<A> {
                                     (first, second) -> h -> first.test(h).merge(second.test(h), (a, b) -> a && b)
                             ).apply(handlerPredicates);
 
-                    return registrationValidator.test(handler).flatMap(x -> x ? addingHandler : IO.empty());
+                    return registrationValidator.test(handler).flatMap(x -> x ? IO.pure(true).andThen(addingHandler) : IO.pure(false));
                 };
                 return main.let(IO::flatten);
             }

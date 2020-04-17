@@ -20,7 +20,18 @@ package io.github.fabriccommunity.everything.api.event.v4;
 import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.functional.IO;
 
+/**
+ * An event handler.
+ *
+ * @param <A> the event type
+ */
 @FunctionalInterface
 public interface EventHandler<A> {
+    /**
+     * Handles the event.
+     *
+     * @param event the event
+     * @return the IO operation
+     */
     IO<Unit> handle(A event);
 }
