@@ -15,20 +15,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.age;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
+import java.util.OptionalLong;
+import java.util.function.BiConsumer;
 
-public class Nothing {
-    Nothing() {}
+/**
+ * The age database stores ages of objects.
+ */
+public interface AgeDatabase {
+    /**
+     * Gets the age of an object.
+     *
+     * @param object the object
+     * @return the age of a registered object or {@link OptionalLong#empty()} if not registered.
+     */
+    OptionalLong getAge(Object object);
 
-    public void doNothing() {}
-
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
-    }
-
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
-    }
+    /**
+     * Iterates each object-age pair in this database and calls the consumer.
+     *
+     * @param consumer the pair consumer
+     */
+    void forEach(BiConsumer<Object, Long> consumer);
 }

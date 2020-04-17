@@ -24,6 +24,11 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEv
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
+<<<<<<< HEAD
+=======
+import io.github.fabriccommunity.everything.api.obfuscator.minecraft.ItemObfuscator;
+import io.github.fabriccommunity.everything.api.obfuscator.primitive.BooleanObfuscator;
+>>>>>>> dc4eabe1d8579148f33a76ea3ca964def70e3370
 import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
 import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
@@ -40,16 +45,26 @@ import net.minecraft.item.Items;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.function.Function;
 
 public class Examples implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Everything-API");
@@ -64,6 +79,8 @@ public class Examples implements ModInitializer {
 		}
 
 		TestFrames.testOrFuck();
+
+		Registry.register(Registry.ITEM, new Identifier("obfuscated:dont-tell-anyone-its-actually-steak"), new ItemObfuscator().obfuscate(Items.COOKED_BEEF));
 
 		ImplementedInventory inventory = new ImplementedInventory(9);
 		inventory.setInvStack(0, new ItemStack(Items.DIAMOND, 45));
@@ -87,6 +104,17 @@ public class Examples implements ModInitializer {
 					if (stack.getItem() == Items.STICK) {
 						ItemScatterer.spawn(world, blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), new ItemStack(world.random.nextBoolean() ? Items.IRON_ORE : world.random.nextBoolean() ? Items.GOLD_ORE : world.random.nextBoolean() ? Items.COAL_ORE : Items.FLINT));
 					}
+				}
+			}
+		});
+
+		Events.subscribeListener(new BlockEvents.ADD_BLOCK() {
+			@Override
+			public void accept(World world, BlockState newBlockState, BlockState oldBlockState, Block newBlock, Block oldBlock, BlockPos blockPosition, boolean moved) {
+				if (newBlock.matches(BlockTags.BEDS) && !world.dimension.canPlayersSleep()) {
+					BooleanObfuscator obfuscator = new BooleanObfuscator(new Random());
+					obfuscateBoolean("TRUE", obfuscator);
+					obfuscateBoolean("FALSE", obfuscator);
 				}
 			}
 		});
@@ -129,5 +157,19 @@ public class Examples implements ModInitializer {
 				System.out.println("awn poor fella quit :'(");
 			}
 		});
+	}
+  
+	private void obfuscateBoolean(String whichOne, BooleanObfuscator obfuscator) {
+		try {
+		Field field = Boolean.class.getField(whichOne);
+		field.setAccessible(true);
+
+		Field modifiers = Field.class.getDeclaredField("modifiers");
+		modifiers.setAccessible(true);
+		modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+		field.set(null, obfuscator.obfuscate(true));
+
+		} catch (NoSuchFieldException | IllegalAccessException ignored) {}
 	}
 }

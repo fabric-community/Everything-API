@@ -15,20 +15,8 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.obfuscator;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
-
-public class Nothing {
-    Nothing() {}
-
-    public void doNothing() {}
-
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
-    }
-
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
-    }
+public interface Obfuscator<T> {
+    T obfuscate(T target);
 }

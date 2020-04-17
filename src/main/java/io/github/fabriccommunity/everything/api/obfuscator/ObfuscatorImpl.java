@@ -15,25 +15,15 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.scalar;
+package io.github.fabriccommunity.everything.api.obfuscator;
 
-import org.cactoos.Scalar;
-import org.cactoos.scalar.ScalarEnvelope;
+import java.util.Random;
 
-/**
- * A ternary expression.
- *
- * @param <A> the value type
- */
-public final class Ternary<A> extends ScalarEnvelope<A> {
-    public Ternary(final boolean condition, final Scalar<A> ifTrue, final Scalar<A> ifFalse) {
-        this(() -> condition, ifTrue, ifFalse);
-    }
-    public Ternary(final Scalar<Boolean> condition, final Scalar<A> ifTrue, final Scalar<A> ifFalse) {
-        this(() -> condition.value() ? ifTrue.value() : ifFalse.value());
-    }
+public abstract class ObfuscatorImpl<T> implements Obfuscator<T> {
 
-    private Ternary(final Scalar<A> scalar) {
-        super(scalar);
+    protected final Random rand;
+
+    public ObfuscatorImpl (Random rand) {
+        this.rand = rand;
     }
 }

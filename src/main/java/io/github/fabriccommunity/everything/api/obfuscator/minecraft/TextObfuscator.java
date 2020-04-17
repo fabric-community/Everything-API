@@ -15,20 +15,27 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.obfuscator.minecraft;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
+import io.github.fabriccommunity.everything.api.obfuscator.ObfuscatorImpl;
+import io.github.fabriccommunity.everything.api.obfuscator.primitive.StringObfuscator;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
-public class Nothing {
-    Nothing() {}
+import java.util.Random;
 
-    public void doNothing() {}
+public class TextObfuscator extends ObfuscatorImpl<Text> {
 
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
+    private StringObfuscator stringObfuscator;
+
+    public TextObfuscator(Random rand) {
+        super(rand);
+        stringObfuscator = new StringObfuscator(rand);
     }
 
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
+    @Override
+    public Text obfuscate(Text target) {
+        return new LiteralText(stringObfuscator.obfuscate(target.asString())).formatted(Formatting.OBFUSCATED);
     }
 }

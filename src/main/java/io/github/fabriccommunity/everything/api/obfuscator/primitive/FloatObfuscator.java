@@ -15,20 +15,19 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.obfuscator.primitive;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
+import io.github.fabriccommunity.everything.api.obfuscator.ObfuscatorImpl;
 
-public class Nothing {
-    Nothing() {}
+import java.util.Random;
 
-    public void doNothing() {}
-
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
+public class FloatObfuscator extends ObfuscatorImpl<Float> {
+    public FloatObfuscator(Random rand) {
+        super(rand);
     }
 
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
+    @Override
+    public Float obfuscate(Float target) {
+        return rand.nextFloat();
     }
 }

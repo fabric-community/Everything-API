@@ -18,13 +18,16 @@
 package io.github.fabriccommunity.everything.api.event.v4;
 
 import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.age.MutableAgeDatabase;
+import io.github.fabriccommunity.everything.api.age.MutableMapAgeDatabase;
 import io.github.fabriccommunity.everything.api.elegant.iterable.Reduce;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Ternary;
 import io.github.fabriccommunity.everything.api.functional.IO;
+import org.cactoos.scalar.Ternary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalLong;
 
 /**
  * An event manager holds event handlers and dispatches events.
@@ -38,6 +41,16 @@ public interface EventManager<A> {
      * @return the IO operation that says whether registration was successful
      */
     IO<Boolean> register(EventHandler<A> handler);
+
+    /**
+     * Gets the age of an event handler, or the time since it has been registered.
+     *
+     * @param handler the handler
+     * @param eager whether the age should be evaluated eagerly or lazily
+     * @return the IO operation containing the age,
+     *         or empty if the handler has not been registered or this manager does not support ages
+     */
+    IO<OptionalLong> getAge(EventHandler<A> handler, boolean eager);
 
     /**
      * Registers an event handler predicate that checks
@@ -68,6 +81,7 @@ public interface EventManager<A> {
         return new EventManager<A>() {
             private final List<EventHandler<A>> handlers = new ArrayList<>();
             private final List<EventHandlerPredicate<A>> handlerPredicates = new ArrayList<>();
+            private final MutableAgeDatabase ages = new MutableMapAgeDatabase();
 
             {
                 // Prevent registering null handlers
@@ -79,6 +93,7 @@ public interface EventManager<A> {
                 final IO<IO<Boolean>> main = () -> {
                     final IO<Unit> addingHandler = () -> {
                         handlers.add(handler);
+                        ages.recordBirthday(handler);
                         return Unit.INSTANCE;
                     };
                     final EventHandlerPredicate<A> registrationValidator =
@@ -97,6 +112,11 @@ public interface EventManager<A> {
                     handlerPredicates.add(predicate);
                     return Unit.INSTANCE;
                 };
+            }
+
+            @Override
+            public IO<OptionalLong> getAge(final EventHandler<A> handler, final boolean eager) {
+                return eager ? IO.pure(ages.getAge(handler)) : () -> ages.getAge(handler);
             }
 
             @Override

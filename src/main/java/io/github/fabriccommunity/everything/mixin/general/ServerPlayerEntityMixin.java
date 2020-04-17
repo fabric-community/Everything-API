@@ -19,13 +19,13 @@ package io.github.fabriccommunity.everything.mixin.general;
 
 import com.mojang.authlib.GameProfile;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Ternary;
 import io.github.fabriccommunity.everything.api.event.v4.events.OpenMenuEvent;
 import io.github.fabriccommunity.everything.api.functional.IO;
 import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
+import org.cactoos.scalar.Ternary;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

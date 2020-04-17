@@ -15,20 +15,18 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.obfuscator.minecraft;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
+import io.github.fabriccommunity.everything.api.obfuscator.ObfuscatedItem;
+import io.github.fabriccommunity.everything.api.obfuscator.Obfuscator;
+import net.minecraft.item.Item;
 
-public class Nothing {
-    Nothing() {}
+public class ItemObfuscator implements Obfuscator<Item> {
 
-    public void doNothing() {}
+    public ItemObfuscator() {}
 
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
-    }
-
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
+    @Override
+    public Item obfuscate(Item target) {
+        return new ObfuscatedItem(target);
     }
 }

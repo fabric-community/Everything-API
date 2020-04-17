@@ -15,20 +15,29 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.nothing;
+package io.github.fabriccommunity.everything.api.age;
 
-import io.github.fabriccommunity.everything.api.event.v17.EventManager;
+import com.google.common.collect.ImmutableMap;
 
-public class Nothing {
-    Nothing() {}
+import java.util.Map;
 
-    public void doNothing() {}
+/**
+ * An immutable age database backed by a map.
+ */
+public final class ImmutableAgeDatabase extends AbstractMapAgeDatabase {
+    private final ImmutableMap<Object, Long> birthdays;
 
-    public Nothing getNothing() {
-        return new NothingBuilder().withNothing().build();
+    /**
+     * Constructs an age database.
+     *
+     * @param birthdays the backing map of birthday timestamps, see {@link AbstractMapAgeDatabase#getBirthdays()}
+     */
+    public ImmutableAgeDatabase(final Map<Object, Long> birthdays) {
+        this.birthdays = ImmutableMap.copyOf(birthdays);
     }
 
-    public void triggerNothing() {
-        EventManager.submitEvent(new NothingEvent(this));
+    @Override
+    protected ImmutableMap<Object, Long> getBirthdays() {
+        return birthdays;
     }
 }
