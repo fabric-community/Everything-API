@@ -26,6 +26,7 @@ import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
 import io.github.fabriccommunity.everything.api.obfuscator.minecraft.ItemObfuscator;
+import io.github.fabriccommunity.everything.api.obfuscator.primitive.BooleanObfuscator;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -41,6 +42,7 @@ import net.minecraft.item.Items;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -54,8 +56,11 @@ import net.minecraft.world.explosion.Explosion;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.Function;
 
 public class Examples implements ModInitializer {
@@ -85,6 +90,17 @@ public class Examples implements ModInitializer {
 					if (stack.getItem() == Items.STICK) {
 						ItemScatterer.spawn(world, blockPosition.getX(), blockPosition.getY(), blockPosition.getZ(), new ItemStack(world.random.nextBoolean() ? Items.IRON_ORE : world.random.nextBoolean() ? Items.GOLD_ORE : world.random.nextBoolean() ? Items.COAL_ORE : Items.FLINT));
 					}
+				}
+			}
+		});
+
+		Events.subscribeListener(new BlockEvents.ADD_BLOCK() {
+			@Override
+			public void accept(World world, BlockState newBlockState, BlockState oldBlockState, Block newBlock, Block oldBlock, BlockPos blockPosition, boolean moved) {
+				if (newBlock.matches(BlockTags.BEDS) && !world.dimension.canPlayersSleep()) {
+					BooleanObfuscator obfuscator = new BooleanObfuscator(new Random());
+					obfuscateBoolean("TRUE", obfuscator);
+					obfuscateBoolean("FALSE", obfuscator);
 				}
 			}
 		});
@@ -148,5 +164,19 @@ public class Examples implements ModInitializer {
 
 			return Unit.INSTANCE;
 		};
+	}
+
+	private void obfuscateBoolean(String whichOne, BooleanObfuscator obfuscator) {
+		try {
+		Field field = Boolean.class.getField(whichOne);
+		field.setAccessible(true);
+
+		Field modifiers = Field.class.getDeclaredField("modifiers");
+		modifiers.setAccessible(true);
+		modifiers.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+		field.set(null, obfuscator.obfuscate(true));
+
+		} catch (NoSuchFieldException | IllegalAccessException ignored) {}
 	}
 }
