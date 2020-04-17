@@ -18,6 +18,7 @@
     "implementation.event.ClientMainImpl",
     "implementation.event.MinecraftClientImpl",
     "implementation.event.ClientPlayNetworkHandlerImpl",
+    "implementation.render.ItemRendererRegistryImpl",
     "modeinjection/BlockModelsMixin",
     "modeinjection/ItemModelsMixin",
     "MixinClientPlayNetworkHandler",
