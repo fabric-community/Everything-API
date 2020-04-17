@@ -21,7 +21,7 @@ public class Octuplumair<A, B, C, D, E, F, G, H> {
 		this.h = h;
 	}
 
-	public Octuplumair<A, B, C, D, E, F, G, H> of (A a, B b, C c, D d, E e, F f, G g, H h) {
+	public static <A, B, C, D, E, F, G, H> Octuplumair<A, B, C, D, E, F, G, H> of (A a, B b, C c, D d, E e, F f, G g, H h) {
 		return new Octuplumair<>(a, b, c, d, e, f, g, h);
 	}
 

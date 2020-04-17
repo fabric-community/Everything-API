@@ -17,7 +17,7 @@ public class Sextair<A, B, C, D, E, F> {
 		this.f = f;
 	}
 
-	public Sextair<A, B, C, D, E, F> of (A a, B b, C c, D d, E e, F f) {
+	public static <A, B, C, D, E, F> Sextair<A, B, C, D, E, F> of (A a, B b, C c, D d, E e, F f) {
 		return new Sextair<>(a, b, c, d, e, f);
 	}
 
