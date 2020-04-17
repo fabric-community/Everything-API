@@ -1,5 +1,3 @@
-<<<<<<< HEAD:src/main/java/io/github/fabriccommunity/everything/mixin/general/PacketByteBufMixin.java
-=======
 /*
  *     Copyright (C) 2020 Fabric Community
  *
@@ -17,7 +15,6 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
->>>>>>> 9a1a1d91d5696e8f7efd2f52b55132a3fc68162c:src/main/java/io/github/fabriccommunity/everything/mixin/PacketByteBufMxn.java
 package io.github.fabriccommunity.everything.mixin.general;
 
 import org.spongepowered.asm.mixin.Mixin;

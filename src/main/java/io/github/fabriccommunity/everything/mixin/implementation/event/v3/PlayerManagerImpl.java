@@ -1,7 +1,3 @@
-<<<<<<< HEAD:src/main/java/io/github/fabriccommunity/everything/mixin/implementation/event/v3/PlayerManagerImpl.java
-package io.github.fabriccommunity.everything.mixin.implementation.event.v3;
-
-=======
 /*
  *     Copyright (C) 2020 Fabric Community
  *
@@ -21,7 +17,6 @@ package io.github.fabriccommunity.everything.mixin.implementation.event.v3;
 
 package io.github.fabriccommunity.everything.mixin.implementation.event.v3;
 
->>>>>>> 9a1a1d91d5696e8f7efd2f52b55132a3fc68162c:src/main/java/io/github/fabriccommunity/everything/mixin/implementation/event/PlayerManagerImpl.java
 import io.github.fabriccommunity.everything.api.event.v3.Events;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEvents;
 import net.minecraft.network.ClientConnection;

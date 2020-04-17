@@ -26,22 +26,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FluidSlot implements FluidListener {
+public class FluidHolder implements FluidListener {
     private FluidInformation fluidInformation = new FluidInformation();
     private List<FluidListener> listeners = new ArrayList<>();
 
-    public FluidSlot() {
+    public FluidHolder() {
         setType(Fluids.EMPTY);
         setStored(0);
     }
 
-    public static FluidSlot of(Object object) {
-        if (object instanceof FluidSlot) {
-            return (FluidSlot) object;
-        } else if (object instanceof ItemStack && ((ItemStack) object).getItem() instanceof FluidInventory) {
-            return new FluidSlot().fromTag(((ItemStack) object).getOrCreateTag());
+    public static FluidHolder of(Object object) {
+        if (object instanceof FluidHolder) {
+            return (FluidHolder) object;
+        } else if (object instanceof ItemStack && ((ItemStack) object).getItem() instanceof FluidContainer) {
+            return new FluidHolder().fromTag(((ItemStack) object).getOrCreateTag());
         } else if (object instanceof CompoundTag) {
-            return new FluidSlot().fromTag((CompoundTag) object);
+            return new FluidHolder().fromTag((CompoundTag) object);
         } else {
             return null;
         }
@@ -59,15 +59,15 @@ public class FluidSlot implements FluidListener {
         return 32000;
     }
 
-    public int getStored() {
-        return fluidInformation.getStored();
-    }
-
     public boolean isEmpty() {
         return getStored() == 0;
     }
 
-    public <L extends FluidSlot> L setStored(int stored) {
+    public int getStored() {
+        return fluidInformation.getStored();
+    }
+
+    public <L extends FluidHolder> L setStored(int stored) {
         fluidInformation.setStored(stored);
         return (L) this;
     }
@@ -76,16 +76,16 @@ public class FluidSlot implements FluidListener {
         return fluidInformation.getType();
     }
 
-    public <L extends FluidSlot> L setType(Fluid type) {
+    public <L extends FluidHolder> L setType(Fluid type) {
         fluidInformation.setType(type);
         return (L) this;
     }
 
-    public FluidInformation getInformation() {
+    public FluidInformation getFluidInformation() {
         return fluidInformation;
     }
 
-    public void setInformation(FluidInformation fluidInformation) {
+    public void setFluidInformation(FluidInformation fluidInformation) {
         this.fluidInformation = fluidInformation;
     }
 
@@ -129,7 +129,7 @@ public class FluidSlot implements FluidListener {
         }
     }
 
-    public void transfer(FluidSlot target, int amount) {
+    public void move(FluidHolder target, int amount) {
         if (target.getStored() <= 0 && getStored() > 0) target.setType(getType());
         if (fluidInformation.type != target.fluidInformation.type && target.fluidInformation.getType() != Fluids.EMPTY) return;
 
@@ -147,13 +147,13 @@ public class FluidSlot implements FluidListener {
         onMovement();
     }
 
-    public <L extends FluidSlot> L toTag(CompoundTag tag) {
-        getInformation().toTag(tag);
+    public <L extends FluidHolder> L toTag(CompoundTag tag) {
+        getFluidInformation().toTag(tag);
         return (L) this;
     }
 
-    public <L extends FluidSlot> L fromTag(CompoundTag tag) {
-        setInformation(new FluidInformation().fromTag(tag));
+    public <L extends FluidHolder> L fromTag(CompoundTag tag) {
+        setFluidInformation(new FluidInformation().fromTag(tag));
         return (L) this;
     }
 

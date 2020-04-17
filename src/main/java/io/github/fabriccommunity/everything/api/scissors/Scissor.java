@@ -1,5 +1,3 @@
-<<<<<<< HEAD:src/main/java/io/github/fabriccommunity/everything/api/scissors/Scissor.java
-=======
 /*
  *     Copyright (C) 2020 Fabric Community
  *
@@ -17,7 +15,6 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
->>>>>>> 9a1a1d91d5696e8f7efd2f52b55132a3fc68162c:src/main/java/io/github/fabriccommunity/everything/scissors/aa412018312840b3a3fa46388d37602e.java
 package io.github.fabriccommunity.everything.api.scissors;
 
 import com.google.common.collect.Lists;
