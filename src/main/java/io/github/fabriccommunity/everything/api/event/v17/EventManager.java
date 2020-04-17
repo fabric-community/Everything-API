@@ -16,6 +16,7 @@ public class EventManager {
                 }
             }
         }
+        a.resolve();
     }
 
     public void registerEventListener(Class<? extends Event> a, Consumer<? extends Event> b) {
