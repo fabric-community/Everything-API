@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.chat;
+package io.github.fabriccommunity.everything.api.chat;
 
 public class YeOldeMessageChecker {
 	

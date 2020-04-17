@@ -1,7 +1,6 @@
-package io.github.fabriccommunity.everything.api.event.implementation;
+package io.github.fabriccommunity.everything.api.event.vini.implementation;
 
 
-import io.github.fabriccommunity.everything.api.event.Event;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -16,6 +15,8 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 import java.util.Optional;
+
+import io.github.fabriccommunity.everything.api.event.vini.Event;
 
 public class BlockEvents {
 	public interface ADD_BLOCK extends Event {

@@ -1,7 +1,7 @@
 package io.github.fabriccommunity.everything.mixin.implementation.event;
 
-import io.github.fabriccommunity.everything.api.event.implementation.BlockEvents;
-import io.github.fabriccommunity.everything.api.event.Events;
+import io.github.fabriccommunity.everything.api.event.vini.Events;
+import io.github.fabriccommunity.everything.api.event.vini.implementation.BlockEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,7 +26,7 @@ import java.util.Optional;
 @Mixin(Block.class)
 public class BlockEventsImpl {
 	@Inject(at = @At("HEAD"), method = "afterBreak(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/item/ItemStack;)V")
-	void breakBlock(World world, PlayerEntity player, BlockPos blockPosition, BlockState blockState, BlockEntity blockntityNullable, ItemStack stack, CallbackInfo callbackInformation) {
+	private void breakBlock(World world, PlayerEntity player, BlockPos blockPosition, BlockState blockState, BlockEntity blockntityNullable, ItemStack stack, CallbackInfo callbackInformation) {
 		if (Events.retrieveEventListeners(BlockEvents.BREAK_BLOCK.staticId()) == null) return;
 
 		Optional<BlockEntity> blockEntity = Optional.ofNullable(blockntityNullable);
@@ -38,7 +38,7 @@ public class BlockEventsImpl {
 	}
 
 	@Inject(at = @At("HEAD"), method = "onPlaced(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;)V")
-	void placeBlock(World world, BlockPos blockPosition, BlockState blockState, LivingEntity placer, ItemStack stack, CallbackInfo callbackInformation) {
+	private void placeBlock(World world, BlockPos blockPosition, BlockState blockState, LivingEntity placer, ItemStack stack, CallbackInfo callbackInformation) {
 		if (Events.retrieveEventListeners(BlockEvents.PLACE_BLOCK.staticId()) == null) return;
 
 		Optional<LivingEntity> entity = Optional.ofNullable(placer);
