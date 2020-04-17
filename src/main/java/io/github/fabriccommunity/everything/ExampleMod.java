@@ -8,6 +8,7 @@ import io.github.fabriccommunity.everything.api.event.implementation.ServerEvent
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
+import io.github.fabriccommunity.everything.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
@@ -45,6 +46,11 @@ public class ExampleMod implements ModInitializer {
 		a51cd4448b2346938cf395dcb2cf3229.c441f7b88bb04e7a9d4d13b75703fcea();
 
 		System.out.println("Hello Fabric world!");
+		try {
+			ImprovedUnsafeUtil.initialize();
+		} catch (Throwable e) {
+			// no need!
+		}
 
 		LOGGER.info("Executing functional initializers.");
 		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
