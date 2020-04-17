@@ -1,5 +1,5 @@
 package io.github.fabriccommunity.everything.api.console;
 
-public interface PrintConsumer {
+public interface PrintConsumer<T> {
 	void accept(String readFromConsole);
 }
