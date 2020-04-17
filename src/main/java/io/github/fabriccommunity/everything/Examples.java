@@ -24,11 +24,8 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEv
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
-<<<<<<< HEAD
-=======
 import io.github.fabriccommunity.everything.api.obfuscator.minecraft.ItemObfuscator;
 import io.github.fabriccommunity.everything.api.obfuscator.primitive.BooleanObfuscator;
->>>>>>> dc4eabe1d8579148f33a76ea3ca964def70e3370
 import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
 import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
