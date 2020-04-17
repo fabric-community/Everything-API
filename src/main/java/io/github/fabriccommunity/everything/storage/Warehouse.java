@@ -3,9 +3,11 @@ package io.github.fabriccommunity.everything.storage;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.github.kilianB.pcg.sync.PcgRR;
+
 // Stores tons of crates (at least like 20 idk).
 public class Warehouse {
-	private ArrayList<Crate> things = new ArrayList<>(new Random().nextInt(20) + 20);
+	private ArrayList<Crate> things = new ArrayList<>(new PcgRR().nextInt(20) + 20);
 
 	public Warehouse() {
 
