@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.event.api_better;
+package io.github.fabriccommunity.everything.api.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 

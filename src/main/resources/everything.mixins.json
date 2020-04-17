@@ -6,7 +6,12 @@
   "mixins": [
     "a319fec2123443439bafdfe06d9267d7",
     "Event",
-    "MixinVanillaLayeredBiomeSource"
+    "MixinVanillaLayeredBiomeSource",
+    "implementation.event.BlockEventsImpl",
+    "implementation.event.ClientPlayNetworkHandlerImpl",
+    "implementation.event.ServerPlayNetworkHandlerImpl",
+    "implementation.event.MinecraftClientImpl",
+    "implementation.event.PlayerManagerImpl"
   ],
   "client": [
     "ExampleMixin"
