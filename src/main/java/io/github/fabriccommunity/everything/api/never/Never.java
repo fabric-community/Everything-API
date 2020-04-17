@@ -15,12 +15,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.object;
+package io.github.fabriccommunity.everything.api.never;
 
 /**
  * Never is a type with no values.
  */
-public enum Never implements ExtendedObject<Never> {
+public enum Never {
     ;
 
     /**

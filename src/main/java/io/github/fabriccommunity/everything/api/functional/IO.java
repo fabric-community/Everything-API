@@ -18,8 +18,7 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.object.Never;
-import io.github.fabriccommunity.everything.api.object.ExtendedObject;
+import io.github.fabriccommunity.everything.api.never.Never;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
 import net.minecraft.util.Lazy;
 import org.cactoos.Proc;
@@ -39,7 +38,7 @@ import java.util.function.Supplier;
  * @param <A> the return value, use {@link com.mojang.datafixers.util.Unit} for unit/void methods
  */
 @FunctionalInterface
-public interface IO<A> extends ExtendedObject<IO<A>> {
+public interface IO<A> {
     /**
      * Executes the impure operation.
      *
