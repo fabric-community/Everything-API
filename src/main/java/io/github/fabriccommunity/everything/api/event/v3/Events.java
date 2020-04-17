@@ -17,13 +17,17 @@
 
 package io.github.fabriccommunity.everything.api.event.v3;
 
+import io.github.fabriccommunity.everything.api.age.MutableAgeDatabase;
+import io.github.fabriccommunity.everything.api.age.MutableMapAgeDatabase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.OptionalLong;
 
 public class Events {
 	private static final Int2ObjectOpenHashMap<HashSet<Event>> EVENTS = new Int2ObjectOpenHashMap<>();
+	private static final MutableAgeDatabase AGES = new MutableMapAgeDatabase();
 
 	public static <T extends Event> void subscribeListener(T event) {
 		if (!EVENTS.containsKey(event.dynamicId())) EVENTS.put(event.dynamicId(), new HashSet<>());
@@ -33,6 +37,10 @@ public class Events {
 	public static <T extends Event> void unsubscribeListener(T event) {
 		if (!EVENTS.containsKey(event.dynamicId())) return;
 		EVENTS.get(event.dynamicId()).remove(event);
+	}
+
+	public static <T extends Event> OptionalLong getListenerAge(T event) {
+		return AGES.getAge(event);
 	}
 
 	public static <T extends Event> HashSet<T> retrieveEventListeners(int event) {
