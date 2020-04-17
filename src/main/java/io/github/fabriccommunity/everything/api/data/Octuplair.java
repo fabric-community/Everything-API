@@ -21,7 +21,7 @@ public class Octuplair<A, B, C, D, E, F, G, H> {
 		this.h = h;
 	}
 
-	public Octuplair<A, B, C, D, E, F, G, H> of (A a, B b, C c, D d, E e, F f, G g, H h) {
+	public static <A, B, C, D, E, F, G, H> Octuplair<A, B, C, D, E, F, G, H> of (A a, B b, C c, D d, E e, F f, G g, H h) {
 		return new Octuplair<>(a, b, c, d, e, f, g, h);
 	}
 

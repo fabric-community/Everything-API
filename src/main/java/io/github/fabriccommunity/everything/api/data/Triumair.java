@@ -11,7 +11,7 @@ public class Triumair<A, B, C> {
 		this.c = c;
 	}
 
-	public Triumair<A, B, C> of (A a, B b, C c) {
+	public static <A, B, C> Triumair<A, B, C> of (A a, B b, C c) {
 		return new Triumair<>(a, b, c);
 	}
 

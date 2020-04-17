@@ -17,7 +17,6 @@
 
 package io.github.fabriccommunity.everything;
 
-import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.event.v3.Events;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEvents;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
@@ -27,9 +26,10 @@ import io.github.fabriccommunity.everything.api.functional.FunctionalModInitiali
 import io.github.fabriccommunity.everything.api.functional.IO;
 import io.github.fabriccommunity.everything.api.obfuscator.minecraft.ItemObfuscator;
 import io.github.fabriccommunity.everything.api.obfuscator.primitive.BooleanObfuscator;
+import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
+import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,8 +64,8 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class Examples implements ModInitializer {
-	private static final Logger LOGGER = LogManager.getLogger("Everything-API");
-
+	public static final Logger LOGGER = LogManager.getLogger("Everything-API");
+  
 	@Override
 	public void onInitialize() {
 		System.out.println("Hello Fabric world!");
@@ -75,11 +75,22 @@ public class Examples implements ModInitializer {
 			// no need!
 		}
 
-		LOGGER.info("Executing functional initializers.");
-		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
 		TestFrames.testOrFuck();
 
 		Registry.register(Registry.ITEM, new Identifier("obfuscated:dont-tell-anyone-its-actually-steak"), new ItemObfuscator().obfuscate(Items.COOKED_BEEF));
+    
+		ImplementedInventory inventory = new ImplementedInventory(9);
+		inventory.setInvStack(0, new ItemStack(Items.DIAMOND, 45));
+		inventory.setInvStack(1, new ItemStack(Items.CACTUS, 17));
+		inventory.setInvStack(2, new ItemStack(Items.DIAMOND, 32));
+		inventory.setInvStack(3, new ItemStack(Items.EGG, 35));
+		inventory.setInvStack(4, new ItemStack(Items.EGG, 64));
+		inventory.setInvStack(5, new ItemStack(Items.FLINT, 27));
+		inventory.setInvStack(6, new ItemStack(Items.DIAMOND, 33));
+		inventory.setInvStack(7, new ItemStack(Items.FLINT, 56));
+		inventory.setInvStack(8, new ItemStack(Items.EMERALD, 12));
+
+		StackManager.sort(inventory);
 
 		Events.subscribeListener(new BlockEvents.USE_BLOCK() {
 			@Override
@@ -144,28 +155,7 @@ public class Examples implements ModInitializer {
 			}
 		});
 	}
-
-	static <A> IO<Unit> runInitializers(String id, Function<A, IO<Unit>> stepGetter, Class<A> clazz) {
-		return () -> {
-			final FabricLoader loader = FabricLoader.getInstance();
-			final List<A> initializers = loader.getEntrypoints(id, clazz);
-
-			for (A initializer : initializers) {
-				final IO<Unit> step;
-
-				try {
-					step = stepGetter.apply(initializer);
-				} catch (Exception e) {
-					throw new RuntimeException("Could not initialize entrypoint " + initializer + "!", e);
-				}
-
-				step.execute();
-			}
-
-			return Unit.INSTANCE;
-		};
-	}
-
+  
 	private void obfuscateBoolean(String whichOne, BooleanObfuscator obfuscator) {
 		try {
 		Field field = Boolean.class.getField(whichOne);

@@ -18,10 +18,12 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Memoized;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Scalar;
+import io.github.fabriccommunity.everything.api.never.Never;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
 import net.minecraft.util.Lazy;
+import org.cactoos.Proc;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Sticky;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -55,12 +57,12 @@ public interface IO<A> {
     }
 
     /**
-     * Memoizes this IO using {@link Memoized} and {@link ScalarOf}.
+     * Memoizes this IO using {@link Sticky} and {@link ScalarOf}.
      *
      * @return the memoized IO operation
      */
     default IO<A> memoize() {
-        return of(new Memoized<>(new ScalarOf<>(this)));
+        return of(new Sticky<>(new ScalarOf<>(this)));
     }
 
     /**
@@ -113,6 +115,16 @@ public interface IO<A> {
     }
 
     /**
+     * Creates an IO from a value.
+     *
+     * @param value the contained value
+     * @return the created IO
+     */
+    static <A> IO<A> pure(final A value) {
+        return () -> value;
+    }
+
+    /**
      * Creates an IO from a {@link Runnable}.
      *
      * @param runnable the runnable task
@@ -162,7 +174,7 @@ public interface IO<A> {
      * @return the created IO
      */
     static <A> IO<A> of(final Scalar<A> scalar) {
-        return scalar::get;
+        return scalar::value;
     }
 
     /**
@@ -176,6 +188,60 @@ public interface IO<A> {
     }
 
     /**
+     * Fixes the function's input.
+     *
+     * @param function the function
+     * @param input the input
+     * @param executor the function execution function
+     * @param <F> the function type
+     * @param <A> the input type
+     * @param <B> the output type
+     * @return an IO operation for the computation
+     */
+    static <F, A, B> IO<B> fix(final F function, final A input, final ThrowingBiFunction<? super F, ? super A, ? extends B> executor) {
+        return () -> executor.apply(function, input);
+    }
+
+    /**
+     * Fixes the function's input.
+     *
+     * @param function the function
+     * @param input the input
+     * @param <A> the input type
+     * @param <B> the output type
+     * @return an IO operation for the computation
+     */
+    static <A, B> IO<B> fix(final Function<? super A, ? extends B> function, final A input) {
+        return fix(function, input, Function::apply);
+    }
+
+    /**
+     * Fixes the process' input.
+     *
+     * @param proc the process
+     * @param input the input
+     * @param <A> the input type
+     * @return an IO operation for the process
+     */
+    static <A> IO<Unit> fix(final Proc<? super A> proc, final A input) {
+        return fix(proc, input, (f, a) -> {
+            f.exec(a);
+            return Unit.INSTANCE;
+        });
+    }
+
+    /**
+     * Flattens the IO stack.
+     *
+     * @param stack the IO stack
+     * @param <A> the value type
+     * @return the flattened IO operation
+     */
+    static <A> IO<A> flatten(final IO<IO<A>> stack) {
+        return stack.flatMap(x -> x);
+    }
+
+    /**
      * Executes an IO unsafely.
      *
      * <p>Thrown exceptions will be ignored and converted into {@link UnsafeExecutionException}.
@@ -185,7 +251,7 @@ public interface IO<A> {
      * @return the IO return value
      * @throws UnsafeExecutionException if the execution throws an exception
      */
-    static <A> A executeUnsafe(final IO<A> io) throws UnsafeExecutionException {
+    static <A> A executeUnsafe(final IO<? extends A> io) throws UnsafeExecutionException {
         try {
             return io.execute();
         } catch (Exception e) {
@@ -199,7 +265,7 @@ public interface IO<A> {
      * @return the {@code empty} IO operation
      */
     static IO<Unit> empty() {
-        return DefaultIO.EMPTY;
+        return EmptyIO.INSTANCE;
     }
 
     /**
@@ -209,21 +275,46 @@ public interface IO<A> {
      */
     @SuppressWarnings("unchecked")
     static <A> IO<A> never() {
-        return (IO<A>) DefaultIO.NEVER;
+        return (IO<A>) NeverIO.NEVER;
+    }
+
+    /**
+     * Returns an IO operation that runs infinitely.
+     *
+     * @return the {@code eternal} IO operation
+     */
+    @SuppressWarnings("unchecked")
+    static <A> IO<A> eternal() {
+        return (IO<A>) NeverIO.ETERNAL;
     }
 }
 
-enum DefaultIO implements IO<Unit> {
-    EMPTY {
-        @Override
-        public Unit execute() {
-            return Unit.INSTANCE;
-        }
-    },
+enum EmptyIO implements IO<Unit> {
+    INSTANCE;
+
+    @Override
+    public Unit execute() {
+        return Unit.INSTANCE;
+    }
+}
+
+enum NeverIO implements IO<Never> {
     NEVER {
         @Override
-        public Unit execute() throws UnsupportedOperationException {
+        public Never execute() throws UnsupportedOperationException {
             throw new UnsupportedOperationException("IO.never does not have a value.");
+        }
+    },
+    ETERNAL {
+        @Override
+        public Never execute() throws IllegalStateException {
+            while (true) {
+                // Execute eternally
+                if (false) {
+                    break;
+                }
+            }
+            throw new IllegalStateException("Did not execute eternally.");
         }
     };
 }

@@ -7,7 +7,7 @@ public class Singumair<A> {
 		this.a = a;
 	}
 
-	public Singlair<A> of (A a) {
+	public static <A> Singlair<A> of (A a) {
 		return new Singlair<>(a);
 	}
 

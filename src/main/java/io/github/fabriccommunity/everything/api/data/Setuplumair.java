@@ -19,7 +19,7 @@ public class Setuplumair<A, B, C, D, E, F, G> {
 		this.g = g;
 	}
 
-	public Setuplumair<A, B, C, D, E, F, G> of (A a, B b, C c, D d, E e, F f, G g) {
+	public static <A, B, C, D, E, F, G> Setuplumair<A, B, C, D, E, F, G> of (A a, B b, C c, D d, E e, F f, G g) {
 		return new Setuplumair<>(a, b, c, d, e, f, g);
 	}
 

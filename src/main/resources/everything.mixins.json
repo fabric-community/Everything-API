@@ -11,6 +11,7 @@
     "general.ContinentLayerMixin",
     "general.VanillaLayeredBiomeSourceMixin",
     "general.SetBaseBiomesLayerMixin",
+    "general.ServerPlayerEntityMixin",
     "implementation.event.v3.BlockEventsImpl",
     "implementation.event.v3.PlayerManagerImpl",
     "implementation.event.v3.ServerMainImpl",

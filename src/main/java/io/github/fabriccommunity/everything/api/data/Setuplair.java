@@ -19,7 +19,7 @@ public class Setuplair<A, B, C, D, E, F, G> {
 		this.g = g;
 	}
 
-	public Setuplair<A, B, C, D, E, F, G> of (A a, B b, C c, D d, E e, F f, G g) {
+	public static <A, B, C, D, E, F, G> Setuplair<A, B, C, D, E, F, G> of (A a, B b, C c, D d, E e, F f, G g) {
 		return new Setuplair<>(a, b, c, d, e, f, g);
 	}
 

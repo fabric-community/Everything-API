@@ -13,7 +13,7 @@ public class Quadrair<A, B, C, D> {
 		this.d = d;
 	}
 
-	public Quadrair<A, B, C, D> of (A a, B b, C c, D d) {
+	public static <A, B, C, D> Quadrair<A, B, C, D> of (A a, B b, C c, D d) {
 		return new Quadrair<>(a, b, c, d);
 	}
 

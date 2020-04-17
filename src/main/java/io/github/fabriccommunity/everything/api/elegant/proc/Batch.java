@@ -17,6 +17,9 @@
 
 package io.github.fabriccommunity.everything.api.elegant.proc;
 
+import io.github.fabriccommunity.everything.api.elegant.iterable.For;
+import org.cactoos.Proc;
+
 /**
  * A batched Proc.
  *
@@ -30,7 +33,7 @@ public final class Batch<A> implements Proc<A> {
     }
 
     @Override
-    public void run(final A input) throws Exception {
-        new For<Proc<? super A>>(proc -> proc.run(input)).run(procs);
+    public void exec(final A input) throws Exception {
+        new For<Proc<? super A>>(proc -> proc.exec(input)).exec(procs);
     }
 }

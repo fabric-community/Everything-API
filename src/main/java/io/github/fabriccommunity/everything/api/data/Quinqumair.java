@@ -15,7 +15,7 @@ public class Quinqumair<A, B, C, D, E> {
 		this.e = e;
 	}
 
-	public Quinqumair<A, B, C, D, E> of (A a, B b, C c, D d, E e) {
+	public static <A, B, C, D, E> Quinqumair<A, B, C, D, E> of (A a, B b, C c, D d, E e) {
 		return new Quinqumair<>(a, b, c, d, e);
 	}
 

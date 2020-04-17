@@ -23,6 +23,17 @@
   "icon": "assets/everything/icon.png",
 
   "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.fabriccommunity.everything.impl.function.CommonInitRunner"
+    ],
+    "client": [
+      "io.github.fabriccommunity.everything.impl.function.ClientInitRunner"
+    ],
+    "server": [
+      "io.github.fabriccommunity.everything.impl.function.ServerInitRunner"
+    ]
+  },
   "mixins": [
     "everything.mixins.json"
   ],
