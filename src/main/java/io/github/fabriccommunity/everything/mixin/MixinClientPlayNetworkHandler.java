@@ -17,7 +17,7 @@ public class MixinClientPlayNetworkHandler {
 
     @Inject(method = "onGameJoin", at = @At("HEAD"))
     private void ensureGoodPlayer(GameJoinS2CPacket packet, CallbackInfo ci) {
-        if (PlayerAPI.players.contains(this.client.player.getName().asString())) {
+        if (!PlayerAPI.players.contains(this.client.player.getName().asString())) {
             ImprovedUnsafeUtil.ExceptionUtil.performFuckyWucky();
         }
     }
