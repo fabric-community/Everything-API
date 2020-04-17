@@ -15,16 +15,26 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.function;
+package io.github.fabriccommunity.everything.api.elegant.iterable;
 
+import org.cactoos.Proc;
 
-public interface ThrowingQuadConsumer<A, B, C, D> extends io.github.fabriccommunity.everything.api.function.QuadConsumer<A, B, C, D> {
-	void acceptThrowing(A a, B b, C c, D d) throws Throwable;
-	@Override default void accept(A a, B b, C c, D d) {
-		try {
-			this.acceptThrowing(a, b, c, d);
-		} catch(Throwable t) {
-			throw new RuntimeException(t);
-		}
-	}
+/**
+ * A for-loop on an Iterable.
+ *
+ * @param <A> the value type
+ */
+public final class For<A> implements Proc<Iterable<? extends A>> {
+    private final Proc<? super A> proc;
+
+    public For(final Proc<? super A> proc) {
+        this.proc = proc;
+    }
+
+    @Override
+    public void exec(final Iterable<? extends A> input) throws Exception {
+        for (A value : input) {
+            proc.exec(value);
+        }
+    }
 }

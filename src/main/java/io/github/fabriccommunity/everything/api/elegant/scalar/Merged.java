@@ -17,21 +17,22 @@
 
 package io.github.fabriccommunity.everything.api.elegant.scalar;
 
-import java.util.function.BiFunction;
+import org.cactoos.BiFunc;
+import org.cactoos.Scalar;
 
 public final class Merged<A, B, C> implements Scalar<C> {
     private final Scalar<A> first;
     private final Scalar<B> second;
-    private final BiFunction<A, B, C> mergingFn;
+    private final BiFunc<A, B, C> mergingFn;
 
-    public Merged(final Scalar<A> first, final Scalar<B> second, final BiFunction<A, B, C> mergingFn) {
+    public Merged(final Scalar<A> first, final Scalar<B> second, final BiFunc<A, B, C> mergingFn) {
         this.first = first;
         this.second = second;
         this.mergingFn = mergingFn;
     }
 
     @Override
-    public C get() throws Exception {
-        return mergingFn.apply(first.get(), second.get());
+    public C value() throws Exception {
+        return mergingFn.apply(first.value(), second.value());
     }
 }

@@ -15,24 +15,23 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.elegant.scalar;
+package io.github.fabriccommunity.everything.api.event.v4;
 
-public final class Memoized<A> implements Scalar<A> {
-    private final Scalar<A> scalar;
-    private A value;
-    private boolean initialized = false;
+import com.mojang.datafixers.util.Unit;
+import io.github.fabriccommunity.everything.api.functional.IO;
 
-    public Memoized(final Scalar<A> scalar) {
-        this.scalar = scalar;
-    }
-
-    @Override
-    public A get() throws Exception {
-        if (!initialized) {
-            value = scalar.get();
-            initialized = true;
-        }
-
-        return value;
-    }
+/**
+ * An event handler.
+ *
+ * @param <A> the event type
+ */
+@FunctionalInterface
+public interface EventHandler<A> {
+    /**
+     * Handles the event.
+     *
+     * @param event the event
+     * @return the IO operation
+     */
+    IO<Unit> handle(A event);
 }
