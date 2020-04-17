@@ -1,10 +1,10 @@
 package io.github.fabriccommunity.everything.api.biome;
 
-import io.github.fabriccommunity.everything.event.shuttle.EventResult;
-import io.github.fabriccommunity.everything.event.shuttle.ShuttleEventContext;
-import io.github.fabriccommunity.everything.event.shuttle.ShuttleEventListener;
-import io.github.fabriccommunity.everything.event.shuttle.ShuttleEventRegistry;
-import io.github.fabriccommunity.everything.event.shuttle.ShuttleEventTracker;
+import io.github.fabriccommunity.everything.api.event.shuttle.EventResult;
+import io.github.fabriccommunity.everything.api.event.shuttle.ShuttleEventContext;
+import io.github.fabriccommunity.everything.api.event.shuttle.ShuttleEventListener;
+import io.github.fabriccommunity.everything.api.event.shuttle.ShuttleEventRegistry;
+import io.github.fabriccommunity.everything.api.event.shuttle.ShuttleEventTracker;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.layer.util.LayerRandomnessSource;
