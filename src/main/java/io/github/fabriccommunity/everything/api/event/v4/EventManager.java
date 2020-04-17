@@ -22,8 +22,8 @@ import io.github.fabriccommunity.everything.api.age.MutableAgeDatabase;
 import io.github.fabriccommunity.everything.api.age.MutableMapAgeDatabase;
 import io.github.fabriccommunity.everything.api.elegant.iterable.Reduce;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
-import io.github.fabriccommunity.everything.api.elegant.scalar.Ternary;
 import io.github.fabriccommunity.everything.api.functional.IO;
+import org.cactoos.scalar.Ternary;
 
 import java.util.ArrayList;
 import java.util.List;
