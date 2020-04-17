@@ -23,7 +23,7 @@ public class Nonuplair<A, B, C, D, E, F, G, H, I> {
 		this.i = i;
 	}
 
-	public Nonuplair<A, B, C, D, E, F, G, H, I> of (A a, B b, C c, D d, E e, F f, G g, H h, I i) {
+	public static <A, B, C, D, E, F, G, H, I> Nonuplair<A, B, C, D, E, F, G, H, I> of (A a, B b, C c, D d, E e, F f, G g, H h, I i) {
 		return new Nonuplair<>(a, b, c, d, e, f, g, h, i);
 	}
 

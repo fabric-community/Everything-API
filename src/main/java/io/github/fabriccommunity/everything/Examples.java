@@ -25,6 +25,8 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEv
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
 import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
 import io.github.fabriccommunity.everything.api.functional.IO;
+import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
+import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -56,7 +58,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class Examples implements ModInitializer {
-	private static final Logger LOGGER = LogManager.getLogger("Everything-API");
+	public static final Logger LOGGER = LogManager.getLogger("Everything-API");
 
 	@Override
 	public void onInitialize() {
@@ -70,6 +72,19 @@ public class Examples implements ModInitializer {
 		LOGGER.info("Executing functional initializers.");
 		IO.executeUnsafe(runInitializers("everything-api/functional/common", FunctionalModInitializer::onInitialize, FunctionalModInitializer.class));
 		TestFrames.testOrFuck();
+
+		ImplementedInventory inventory = new ImplementedInventory(9);
+		inventory.setInvStack(0, new ItemStack(Items.DIAMOND, 45));
+		inventory.setInvStack(1, new ItemStack(Items.CACTUS, 17));
+		inventory.setInvStack(2, new ItemStack(Items.DIAMOND, 32));
+		inventory.setInvStack(3, new ItemStack(Items.EGG, 35));
+		inventory.setInvStack(4, new ItemStack(Items.EGG, 64));
+		inventory.setInvStack(5, new ItemStack(Items.FLINT, 27));
+		inventory.setInvStack(6, new ItemStack(Items.DIAMOND, 33));
+		inventory.setInvStack(7, new ItemStack(Items.FLINT, 56));
+		inventory.setInvStack(8, new ItemStack(Items.EMERALD, 12));
+
+		StackManager.sort(inventory);
 
 		Events.subscribeListener(new BlockEvents.USE_BLOCK() {
 			@Override

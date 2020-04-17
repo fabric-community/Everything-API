@@ -9,7 +9,7 @@ public class Twair<A, B> {
 		this.b = b;
 	}
 
-	public Twair<A, B> of (A a, B b) {
+	public static <A, B> Twair<A, B> of (A a, B b) {
 		return new Twair<>(a, b);
 	}
 
