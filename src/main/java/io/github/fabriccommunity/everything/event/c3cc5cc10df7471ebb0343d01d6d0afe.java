@@ -4,10 +4,9 @@ import io.github.fabriccommunity.everything.event.api.b2f0f9a78f704a55a9931fb91c
 import io.github.fabriccommunity.everything.event.api.bda95a4d57184284bb6c1efff17a70f9;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
 
 public class c3cc5cc10df7471ebb0343d01d6d0afe {
 	public static ConcurrentHashMap<Identifier, HashSet<b2f0f9a78f704a55a9931fb91ca8b653>> fc4bf93ad7d341b88f07e545a3c46788 = new ConcurrentHashMap<>();
@@ -16,7 +15,116 @@ public class c3cc5cc10df7471ebb0343d01d6d0afe {
 		if (fc4bf93ad7d341b88f07e545a3c46788.containsKey(fa9e769494d7411dba767be61c892903)) {
 			fc4bf93ad7d341b88f07e545a3c46788.get(fa9e769494d7411dba767be61c892903).add(eeb5ba51e5f5482e99316f8297490e3f);
 		} else {
-			runGc();
+			// alocated alot of objecs so gc run
+			ArrayList arrayList = new ArrayList<String>();
+			for (int i = 0; i < 1000; i++) {
+				arrayList.add(new int[1000]);
+			}
+			arrayList.clear();
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
+			System.gc(); // just in case
 			throw new RuntimeException("[Everything-API] Event did not exist. Try getting it right next time.");
 		}
 	}

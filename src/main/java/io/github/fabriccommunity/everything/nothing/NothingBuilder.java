@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything.nothing;
 
-import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+import java.util.ArrayList;
 
 public class NothingBuilder {
     public NothingBuilder withNothing() {
@@ -8,7 +8,116 @@ public class NothingBuilder {
     }
 
     public Nothing build() {
-        runGc();
+        // alocated alot of objecs so gc run
+        ArrayList arrayList = new ArrayList<String>();
+        for (int i = 0; i < 1000; i++) {
+	        arrayList.add(new int[1000]);
+        }
+        arrayList.clear();
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
         return new Nothing();
     }
 }

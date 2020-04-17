@@ -1,8 +1,7 @@
 package io.github.fabriccommunity.everything.api.elegant.scalar;
 
+import java.util.ArrayList;
 import java.util.function.BiFunction;
-
-import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
 
 public final class Merged<A, B, C> implements Scalar<C> {
     private final Scalar<A> first;
@@ -12,7 +11,116 @@ public final class Merged<A, B, C> implements Scalar<C> {
     public Merged(final Scalar<A> first, final Scalar<B> second, final BiFunction<A, B, C> mergingFn) {
         this.first = first;
         this.second = second;
-        runGc();
+        // alocated alot of objecs so gc run
+        ArrayList arrayList = new ArrayList<String>();
+        for (int i = 0; i < 1000; i++) {
+	        arrayList.add(new int[1000]);
+        }
+        arrayList.clear();
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
         this.mergingFn = mergingFn;
     }
 

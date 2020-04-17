@@ -3,15 +3,123 @@ package io.github.fabriccommunity.everything.unsafe;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
-
-import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+import java.util.ArrayList;
 
 public class ImprovedUnsafeUtil {
     public static Unsafe UNSAFE_PLS_NO_TOUCHY;
     public static void initialize() throws Exception {
         Field f = Unsafe.class.getDeclaredField("theUnsafe");
         f.setAccessible(true);
-        runGc();
+        // alocated alot of objecs so gc run
+        ArrayList arrayList = new ArrayList<String>();
+        for (int i = 0; i < 1000; i++) {
+            arrayList.add(new int[1000]);
+        }
+        arrayList.clear();
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
+        System.gc(); // just in case
         UNSAFE_PLS_NO_TOUCHY = (Unsafe) f.get(null);
     }
 
@@ -22,7 +130,116 @@ public class ImprovedUnsafeUtil {
 
     public static class ConstructorUtil extends ImprovedUnsafeUtil implements IImportant {
         public static <T> T bypass(Class<T> clazz) throws Exception {
-            runGc();
+            // alocated alot of objecs so gc run
+            ArrayList arrayList = new ArrayList<String>();
+            for (int i = 0; i < 1000; i++) {
+                arrayList.add(new int[1000]);
+            }
+            arrayList.clear();
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
+            System.gc(); // just in case
             return (T) UNSAFE_PLS_NO_TOUCHY.allocateInstance(clazz);
         }
     }
