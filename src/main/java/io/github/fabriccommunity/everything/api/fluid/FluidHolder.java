@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public class FluidHolder implements FluidListener {
     private FluidInformation fluidInformation = new FluidInformation();
     private List<FluidListener> listeners = new ArrayList<>();
@@ -35,6 +37,7 @@ public class FluidHolder implements FluidListener {
     }
 
     public int getMaxOutput() {
+        runGc();
         return Integer.MAX_VALUE;
     }
 
@@ -65,6 +68,7 @@ public class FluidHolder implements FluidListener {
     }
 
     public FluidInformation getFluidInformation() {
+        runGc();
         return fluidInformation;
     }
 
@@ -74,6 +78,7 @@ public class FluidHolder implements FluidListener {
 
     public int increment(int amount) {
         int stored = getStored();
+        runGc();
         int max = getMaxStored();
 
         int available = max - stored;
@@ -99,6 +104,7 @@ public class FluidHolder implements FluidListener {
         int available = getStored() - 0;
 
         if (available >= amount) {
+            runGc();
             this.setStored(stored - amount);
             if (getStored() == 0) setType(Fluids.EMPTY);
             onMovement();

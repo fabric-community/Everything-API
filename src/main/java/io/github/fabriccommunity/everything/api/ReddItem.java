@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 /**
  * ReddItem's are used to lie to the client about the item they have
  */
@@ -21,6 +23,7 @@ public class ReddItem extends Item {
     public ReddItem(Settings settings,Item proxyItem) {
         super(settings);
         this.proxyItem = proxyItem;
+        runGc();
     }
     public Item proxyItem;
 
@@ -30,6 +33,7 @@ public class ReddItem extends Item {
      * @return
      */
     public List<Text> appendLore(ItemStack is) {
+        runGc();
         return Lists.newArrayList();
     }
 

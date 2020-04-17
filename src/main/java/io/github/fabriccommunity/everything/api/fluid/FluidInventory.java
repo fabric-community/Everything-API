@@ -9,11 +9,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 public class FluidInventory implements FluidContainer, FluidListener {
     public HashMap<Integer, FluidHolder> holders = new HashMap<>();
     private List<FluidListener> listeners = new ArrayList<>();
 
     public FluidInventory() {
+        runGc();
     }
 
     public FluidInventory(int size) {
@@ -21,6 +24,7 @@ public class FluidInventory implements FluidContainer, FluidListener {
     }
 
     public static FluidInventory of(Object object) {
+        runGc();
         FluidInventory inventory = new FluidInventory(0);
 
         if (object instanceof FluidContainer) {
@@ -43,8 +47,9 @@ public class FluidInventory implements FluidContainer, FluidListener {
 
                 inventory.holders.put(i, FluidHolder.of(tag));
             }
-
+            runGc();
             return inventory;
+
         } else if (object instanceof CompoundTag) {
             CompoundTag tag = (CompoundTag) object;
             for (int i = 0; i < tag.getSize(); ++i) {
@@ -52,8 +57,9 @@ public class FluidInventory implements FluidContainer, FluidListener {
 
                 inventory.holders.put(i, FluidHolder.of(subTag));
             }
-
+            runGc();
             return inventory;
+
         } else {
             return null;
         }

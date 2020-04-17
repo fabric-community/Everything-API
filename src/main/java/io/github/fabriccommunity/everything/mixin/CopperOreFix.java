@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import static io.github.fabriccommunity.everything.functions.QuadFunction.runGc;
+
 @Mixin (Registry.class)
 public class CopperOreFix {
 	@Shadow @Final protected static Logger LOGGER;
@@ -21,6 +23,7 @@ public class CopperOreFix {
 	@Inject (method = "register(Lnet/minecraft/util/registry/Registry;Lnet/minecraft/util/Identifier;Ljava/lang/Object;)Ljava/lang/Object;",
 	         at = @At ("HEAD"))
 	private static <T> void register(Registry<? super T> registry, Identifier id, T entry, CallbackInfoReturnable<T> cir) {
+		runGc();
 		if (id.getPath().contains("copper") && id.getPath().contains("ore")) {
 			if (entry instanceof Item || entry instanceof Block) {
 				if (copperOre != null) {
