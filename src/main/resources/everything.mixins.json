@@ -16,6 +16,10 @@
     "modeinjection/ItemModelsMixin",
     "MixinClientPlayNetworkHandler"
   ],
+  "server":
+  [
+    "PacketByteBufMxn"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
