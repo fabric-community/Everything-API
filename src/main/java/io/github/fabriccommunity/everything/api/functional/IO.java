@@ -194,6 +194,16 @@ public interface IO<A> {
     static <A> IO<A> never() {
         return (IO<A>) DefaultIO.NEVER;
     }
+
+    /**
+     * Returns an IO operation that runs infinitely.
+     *
+     * @return the {@code eternal} IO operation
+     */
+    @SuppressWarnings("unchecked")
+    static <A> IO<A> eternal() {
+        return (IO<A>) DefaultIO.ETERNAL;
+    }
 }
 
 enum DefaultIO implements IO<Unit> {
@@ -207,6 +217,18 @@ enum DefaultIO implements IO<Unit> {
         @Override
         public Unit execute() throws UnsupportedOperationException {
             throw new UnsupportedOperationException("IO.never does not have a value.");
+        }
+    },
+    ETERNAL {
+        @Override
+        public Unit execute() throws Exception {
+            while (true) {
+                // Execute eternally
+                if (false) {
+                    break;
+                }
+            }
+            return NEVER.execute();
         }
     };
 }
