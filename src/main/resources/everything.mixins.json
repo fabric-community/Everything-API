@@ -8,13 +8,21 @@
     "Event",
     "MixinVanillaLayeredBiomeSource",
     "MixinSetBaseBiomesLayer",
-    "MixinContinentLayer"
+    "MixinContinentLayer",
+    "implementation.event.BlockEventsImpl",
+    "implementation.event.ServerMainImpl",
+    "implementation.event.ServerPlayNetworkHandlerImpl",
+    "implementation.event.PlayerManagerImpl"
   ],
   "client": [
-    "ExampleMixin",
+    "implementation.event.ClientMainImpl",
+    "implementation.event.MinecraftClientImpl",
+    "implementation.event.ClientPlayNetworkHandlerImpl",
+    "implementation.render.ItemRendererRegistryImpl",
     "modeinjection/BlockModelsMixin",
     "modeinjection/ItemModelsMixin",
-    "MixinClientPlayNetworkHandler"
+    "MixinClientPlayNetworkHandler",
+    "ExampleMixin"
   ],
   "server":
   [
