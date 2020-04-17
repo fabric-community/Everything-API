@@ -18,7 +18,7 @@
 package io.github.fabriccommunity.everything.api.functional;
 
 import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.never.Never;
+import io.github.fabriccommunity.everything.api.object.Never;
 import io.github.fabriccommunity.everything.api.object.ExtendedObject;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
 import net.minecraft.util.Lazy;

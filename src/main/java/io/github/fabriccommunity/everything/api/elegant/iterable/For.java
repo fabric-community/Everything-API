@@ -15,24 +15,26 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.event.v4;
+package io.github.fabriccommunity.everything.api.elegant.iterable;
 
-import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.functional.IO;
+import org.cactoos.Proc;
 
-public abstract class AbstractVetoableEvent implements VetoableEvent {
-    private boolean vetoed = false;
+/**
+ * A for-loop on an Iterable.
+ *
+ * @param <A> the value type
+ */
+public final class For<A> implements Proc<Iterable<? extends A>> {
+    private final Proc<? super A> proc;
 
-    @Override
-    public IO<Boolean> isVetoed() {
-        return () -> vetoed;
+    public For(final Proc<? super A> proc) {
+        this.proc = proc;
     }
 
     @Override
-    public IO<Unit> veto() {
-        return () -> {
-            vetoed = true;
-            return Unit.INSTANCE;
-        };
+    public void exec(final Iterable<? extends A> input) throws Exception {
+        for (A value : input) {
+            proc.exec(value);
+        }
     }
 }

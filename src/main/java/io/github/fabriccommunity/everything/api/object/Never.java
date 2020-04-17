@@ -15,24 +15,24 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.api.event.v4;
+package io.github.fabriccommunity.everything.api.object;
 
-import com.mojang.datafixers.util.Unit;
-import io.github.fabriccommunity.everything.api.functional.IO;
+/**
+ * Never is a type with no values.
+ */
+public enum Never implements ExtendedObject<Never> {
+    ;
 
-public abstract class AbstractVetoableEvent implements VetoableEvent {
-    private boolean vetoed = false;
-
-    @Override
-    public IO<Boolean> isVetoed() {
-        return () -> vetoed;
-    }
-
-    @Override
-    public IO<Unit> veto() {
-        return () -> {
-            vetoed = true;
-            return Unit.INSTANCE;
-        };
+    /**
+     * Casts this instance to the specified type.
+     *
+     * <p>Completely safe because this type does not have values.
+     *
+     * @param <A> the target type
+     * @return this instance as the target type
+     */
+    @SuppressWarnings("unchecked")
+    public <A> A as() {
+        return (A) this;
     }
 }
