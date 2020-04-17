@@ -1,6 +1,6 @@
 package io.github.fabriccommunity.everything.mixin.implementation.render;
 
-import io.github.fabriccommunity.everything.api.render.ItemRendererRegistry;
+import io.github.fabriccommunity.everything.api.render.registry.ItemRendererRegistry;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemRenderer.class)
 public class ItemRendererRegistryImpl {
     @Inject(at = @At(value = "RETURN"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
-    private void renderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrix, VertexConsumerProvider vertexes, int light, int overlay, BakedModel model, CallbackInfo ci) {
+    private void renderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrix, VertexConsumerProvider vertexes, int light, int overlay, BakedModel model, CallbackInfo callbackInformation) {
         if (ItemRendererRegistry.INSTANCE.get(stack.getItem()) != null) {
             model.getTransformation().getTransformation(renderMode).apply(leftHanded, matrix);
             ItemRendererRegistry.INSTANCE.get(stack.getItem()).render(stack, matrix, vertexes, light, overlay);

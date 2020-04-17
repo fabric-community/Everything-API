@@ -1,7 +1,6 @@
-package io.github.fabriccommunity.everythingtest;
+package io.github.fabriccommunity.everything;
 
 import com.mojang.datafixers.util.Unit;
-
 import io.github.fabriccommunity.everything.api.event.v3.Events;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEvents;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
@@ -39,13 +38,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ExampleMod implements ModInitializer {
+public class Examples implements ModInitializer {
 	private static final Logger LOGGER = LogManager.getLogger("Everything-API");
 
 	@Override
 	public void onInitialize() {
-		a51cd4448b2346938cf395dcb2cf3229.c441f7b88bb04e7a9d4d13b75703fcea();
-
 		System.out.println("Hello Fabric world!");
 		try {
 			ImprovedUnsafeUtil.initialize();
