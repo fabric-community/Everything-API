@@ -22,8 +22,6 @@ import io.github.fabriccommunity.everything.api.event.v3.implementation.BlockEve
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ClientEvents;
 import io.github.fabriccommunity.everything.api.event.v3.implementation.ServerEvents;
 import io.github.fabriccommunity.everything.api.frame.unit_testing.TestFrames;
-import io.github.fabriccommunity.everything.api.functional.FunctionalModInitializer;
-import io.github.fabriccommunity.everything.api.functional.IO;
 import io.github.fabriccommunity.everything.api.inventory.ImplementedInventory;
 import io.github.fabriccommunity.everything.api.inventory.StackManager;
 import io.github.fabriccommunity.everything.api.unsafe.ImprovedUnsafeUtil;
