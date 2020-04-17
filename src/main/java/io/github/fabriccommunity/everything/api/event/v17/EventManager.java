@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class EventManager {
-    protected Map<Class<? extends Event>, Collection<Consumer<? extends Event>>> a = new HashMap<>();
+public abstract class EventManager {
+    protected static Map<Class<? extends Event>, Collection<Consumer<? extends Event>>> a = new HashMap<>();
 
-    public void submitEvent(Event a) {
-        for(Class<? extends Event> b : this.a.keySet()) {
+    public static void submitEvent(Event a) {
+        for(Class<? extends Event> b : EventManager.a.keySet()) {
             if(b.isInstance(a)) {
-                for(Consumer<? extends Event> c : this.a.get(b)) {
+                for(Consumer<? extends Event> c : EventManager.a.get(b)) {
                     ((Consumer) c).accept(a);
                 }
             }
@@ -19,8 +19,8 @@ public class EventManager {
         a.resolve();
     }
 
-    public void registerEventListener(Class<? extends Event> a, Consumer<? extends Event> b) {
-        Collection<Consumer<? extends Event>> c = this.a.get(a);
+    public static void registerEventListener(Class<? extends Event> a, Consumer<? extends Event> b) {
+        Collection<Consumer<? extends Event>> c = EventManager.a.get(a);
 
         c.add(b);
     }
