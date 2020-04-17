@@ -1,12 +1,12 @@
 package io.github.fabriccommunity.everything.api.data;
 
 public class Sextair<A, B, C, D, E, F> {
-	private A a;
-	private B b;
-	private C c;
-	private D d;
-	private E e;
-	private F f;
+	private final A a;
+	private final B b;
+	private final C c;
+	private final D d;
+	private final E e;
+	private final F f;
 
 	public Sextair(A a, B b, C c, D d, E e, F f) {
 		this.a = a;

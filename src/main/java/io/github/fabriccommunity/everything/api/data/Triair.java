@@ -1,9 +1,9 @@
 package io.github.fabriccommunity.everything.api.data;
 
 public class Triair<A, B, C> {
-	private A a;
-	private B b;
-	private C c;
+	private final A a;
+	private final B b;
+	private final C c;
 
 	public Triair(A a, B b, C c) {
 		this.a = a;

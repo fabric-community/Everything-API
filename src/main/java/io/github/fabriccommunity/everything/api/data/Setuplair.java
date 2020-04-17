@@ -1,13 +1,13 @@
 package io.github.fabriccommunity.everything.api.data;
 
 public class Setuplair<A, B, C, D, E, F, G> {
-	private A a;
-	private B b;
-	private C c;
-	private D d;
-	private E e;
-	private F f;
-	private G g;
+	private final A a;
+	private final B b;
+	private final C c;
+	private final D d;
+	private final E e;
+	private final F f;
+	private final G g;
 
 	public Setuplair(A a, B b, C c, D d, E e, F f, G g) {
 		this.a = a;

@@ -1,8 +1,8 @@
 package io.github.fabriccommunity.everything.api.data;
 
 public class Twair<A, B> {
-	private A a;
-	private B b;
+	private final A a;
+	private final B b;
 
 	public Twair(A a, B b) {
 		this.a = a;

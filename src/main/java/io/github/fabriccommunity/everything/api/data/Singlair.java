@@ -1,7 +1,7 @@
 package io.github.fabriccommunity.everything.api.data;
 
 public class Singlair<A> {
-	private A a;
+	private final A a;
 
 	public Singlair(A a) {
 		this.a = a;
