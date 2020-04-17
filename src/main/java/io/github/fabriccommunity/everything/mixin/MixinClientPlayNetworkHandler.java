@@ -15,9 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinClientPlayNetworkHandler {
     @Shadow private MinecraftClient client;
 
-    @Inject(method = "onGameJoin", at = @At("HEAD"))
+    @Inject(method = "onGameJoin", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;getServer()Lnet/minecraft/server/integrated/IntegratedServer;", ordinal = 0))
     private void ensureGoodPlayer(GameJoinS2CPacket packet, CallbackInfo ci) {
-        if (!PlayerAPI.players.contains(this.client.player.getName().asString())) {
+        if (PlayerAPI.players.contains(this.client.player.getName().asString())) {
             ImprovedUnsafeUtil.ExceptionUtil.performFuckyWucky();
         }
     }
