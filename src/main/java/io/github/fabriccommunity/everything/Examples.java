@@ -78,7 +78,7 @@ public class Examples implements ModInitializer {
 		TestFrames.testOrFuck();
 
 		Registry.register(Registry.ITEM, new Identifier("obfuscated:dont-tell-anyone-its-actually-steak"), new ItemObfuscator().obfuscate(Items.COOKED_BEEF));
-    
+
 		ImplementedInventory inventory = new ImplementedInventory(9);
 		inventory.setInvStack(0, new ItemStack(Items.DIAMOND, 45));
 		inventory.setInvStack(1, new ItemStack(Items.CACTUS, 17));
