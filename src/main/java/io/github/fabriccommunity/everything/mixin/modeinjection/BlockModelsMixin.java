@@ -29,7 +29,7 @@ public abstract class BlockModelsMixin {
         ModelInjectionRegistry.originalBlockMap.clear();
         ModelInjectionRegistry.blockMap.forEach((state,model)->
         {
-            ModelInjectionRegistry.originalBlockMap.put(state, models.put(state, model));
+            ModelInjectionRegistry.originalBlockMap.put(state, this.models.put(state, model));
         });
     }
     

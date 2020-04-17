@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Random;
 
 public class a51cd4448b2346938cf395dcb2cf3229 {
-	public static final boolean ce220b90033f4b16a5feab224c98efd0 = new Random().nextBoolean() ? false : true;
+	public static final boolean ce220b90033f4b16a5feab224c98efd0 = !new Random().nextBoolean();
 	public static final int cb1e903ad3334d4bb4dcf544dee49207 = new Random().nextInt(512);
 
 	public static void c441f7b88bb04e7a9d4d13b75703fcea() {

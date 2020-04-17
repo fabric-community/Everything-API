@@ -14,6 +14,6 @@ public final class Batch<A> implements Proc<A> {
 
     @Override
     public void run(final A input) throws Exception {
-        new For<Proc<? super A>>(proc -> proc.run(input)).run(procs);
+        new For<Proc<? super A>>(proc -> proc.run(input)).run(this.procs);
     }
 }

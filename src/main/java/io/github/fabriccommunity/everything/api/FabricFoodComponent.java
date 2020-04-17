@@ -73,23 +73,23 @@ public class FabricFoodComponent {
 	public FoodComponent build() {
 		FoodComponent.Builder builder = new FoodComponent.Builder();
 
-		builder.hunger(hunger);
-		builder.saturationModifier(saturationModifier);
+		builder.hunger(this.hunger);
+		builder.saturationModifier(this.saturationModifier);
 
-		if (alwaysEdible) {
+		if (this.alwaysEdible) {
 			builder.alwaysEdible();
 		}
 
-		if (meat) {
+		if (this.meat) {
 			builder.meat();
 		}
 
-		if (snack) {
+		if (this.snack) {
 			builder.snack();
 		}
 
-		if (!statusEffects.isEmpty()) {
-			for (Pair<StatusEffectInstance, Float> statusEffectPair : statusEffects) {
+		if (!this.statusEffects.isEmpty()) {
+			for (Pair<StatusEffectInstance, Float> statusEffectPair : this.statusEffects) {
 				builder.statusEffect(statusEffectPair.getLeft(), statusEffectPair.getRight());
 			}
 		}

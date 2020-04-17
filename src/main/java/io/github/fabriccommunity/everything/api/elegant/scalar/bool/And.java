@@ -23,7 +23,7 @@ public final class And implements Scalar<Boolean> {
     public Boolean get() throws Exception {
         boolean result = true;
 
-        for (Scalar<Boolean> scalar : iterable) {
+        for (Scalar<Boolean> scalar : this.iterable) {
             result = result && scalar.get();
         }
 

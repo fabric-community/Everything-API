@@ -14,20 +14,20 @@ public enum ThingHandler {
 	Capsule capsule = new Capsule();
 
 	ThingHandler() {
-		tetrahedron.addThing(capsule);
-		crate.addThing(tetrahedron);
-		warehouse.addThing(crate);
-		planet.addThing(warehouse);
-		dimension.addThing(planet);
-		universe.addThing(dimension);
+		this.tetrahedron.addThing(this.capsule);
+		this.crate.addThing(this.tetrahedron);
+		this.warehouse.addThing(this.crate);
+		this.planet.addThing(this.warehouse);
+		this.dimension.addThing(this.planet);
+		this.universe.addThing(this.dimension);
 	}
 
 
 	public <T extends Object> void handleThing(T thing) {
-		((Tetrahedron)(universe.getThing(0).getThing(0).getThing(0).getThing(0).getThing(0))).getThing(0).addThing(new Thing<>(thing));
+		((Tetrahedron)(this.universe.getThing(0).getThing(0).getThing(0).getThing(0).getThing(0))).getThing(0).addThing(new Thing<>(thing));
 	}
 
 	public Universe getUniverse() {
-		return universe;
+		return this.universe;
 	}
 }

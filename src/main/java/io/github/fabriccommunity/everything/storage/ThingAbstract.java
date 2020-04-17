@@ -16,12 +16,12 @@ public abstract class ThingAbstract<T> {
 	protected abstract void doTheThing();
 
 	public void performTheThing() {
-		doTheThing();
+		this.doTheThing();
 	}
 
 	public void performTheThings(int thingyTimes) {
 		for (int i = 0; i < thingyTimes; i++) {
-			doTheThing();
+			this.doTheThing();
 		}
 	}
 }

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 // Stores 4 capsules.
 public class Box implements IBox {
-	private ArrayList<Capsule> things = new ArrayList<>(scoopiness());
+	private ArrayList<Capsule> things = new ArrayList<>(this.scoopiness());
 
 	public Box() {
 
@@ -15,23 +15,27 @@ public class Box implements IBox {
 
 	@Override
 	public void forTheThingsPerformTheThing() {
-		for (Capsule thing : things) {
+		int i = 0, size = this.things.size();
+		do {
+			if (i >= size) break;
+			Capsule thing = this.things.get(i);
 			thing.forTheThingsPerformTheThing();
-		}
+			i++;
+		} while (true);
 	}
 
 	public Capsule getThing(int position) {
-		return things.get(position);
+		return this.things.get(position);
 	}
 
 	public String setThing(int position, Capsule thingy) {
-		things.set(position, thingy);
+		this.things.set(position, thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Yes hi, thing in the thing now.";
 	}
 
 	public String addThing(Capsule thingy) {
-		things.add(thingy);
+		this.things.add(thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Um thingy in the doohickey now";
 	}
@@ -49,7 +53,7 @@ public class Box implements IBox {
 	@Override
 	public void beep(UUID scoop) {
 		int i = scoop.clockSequence();
-		boop(i);
+		this.boop(i);
 	}
 
 	@Override
@@ -64,6 +68,6 @@ public class Box implements IBox {
 
 	@Override
 	public void woop() {
-		UUID scoop = scoop();
+		UUID scoop = this.scoop();
 	}
 }

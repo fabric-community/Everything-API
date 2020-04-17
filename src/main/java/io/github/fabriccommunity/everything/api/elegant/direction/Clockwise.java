@@ -16,6 +16,6 @@ public final class Clockwise implements Scalar<Direction> {
 
     @Override
     public Direction get() throws Exception {
-        return direction.get().rotateYClockwise();
+        return this.direction.get().rotateYClockwise();
     }
 }

@@ -24,6 +24,6 @@ public final class GetBlockState implements Scalar<BlockState> {
 
     @Override
     public BlockState get() throws Exception {
-        return world.get().getBlockState(pos.get());
+        return this.world.get().getBlockState(this.pos.get());
     }
 }

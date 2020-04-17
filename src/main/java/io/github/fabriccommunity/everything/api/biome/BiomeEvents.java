@@ -14,7 +14,7 @@ public final class BiomeEvents {
 		// NO-OP
 	}
 
-	public static interface OverworldBiomePlacementEvent extends ShuttleEventListener {
+	public interface OverworldBiomePlacementEvent extends ShuttleEventListener {
 		/**
 		 * called on biome placement in the overworld.
 		 * @param context the context of the biome placement
@@ -23,11 +23,11 @@ public final class BiomeEvents {
 		EventResult onBiomePlace(OverworldBiomePlacementContext context);
 	}
 
-	public static interface OverworldContinentLayerEvent extends ShuttleEventListener {
+	public interface OverworldContinentLayerEvent extends ShuttleEventListener {
 		EventResult onContinentGen(OverworldContinentLayerContext context);
 	}
 
-	public static interface OverworldBaseBiomesLayerEvent extends ShuttleEventListener {
+	public interface OverworldBaseBiomesLayerEvent extends ShuttleEventListener {
 		EventResult onBaseBiomeGen(OverworldBaseBiomesLayerContext context);
 	}
 

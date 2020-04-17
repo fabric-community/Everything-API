@@ -22,6 +22,6 @@ public final class DirectionOf implements Scalar<Direction> {
 
     @Override
     public Direction get() throws Exception {
-        return scalar.get();
+        return this.scalar.get();
     }
 }

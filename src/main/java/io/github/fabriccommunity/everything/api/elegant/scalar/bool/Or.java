@@ -21,7 +21,7 @@ public final class Or implements Scalar<Boolean> {
 
     @Override
     public Boolean get() throws Exception {
-        for (Scalar<Boolean> scalar : iterable) {
+        for (Scalar<Boolean> scalar : this.iterable) {
             if (scalar.get()) {
                 return true;
             }

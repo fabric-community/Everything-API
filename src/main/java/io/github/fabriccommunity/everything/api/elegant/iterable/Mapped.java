@@ -15,16 +15,16 @@ public final class Mapped<A, B> implements Iterable<B> {
     @Override
     public Iterator<B> iterator() {
         return new Iterator<B>() {
-            private final Iterator<? extends A> iterator = iterable.iterator();
+            private final Iterator<? extends A> iterator = Mapped.this.iterable.iterator();
 
             @Override
             public boolean hasNext() {
-                return iterator.hasNext();
+                return this.iterator.hasNext();
             }
 
             @Override
             public B next() {
-                return transform.apply(iterator.next());
+                return Mapped.this.transform.apply(this.iterator.next());
             }
         };
     }

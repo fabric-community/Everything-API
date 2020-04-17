@@ -124,7 +124,7 @@ public class YeOldeMessageChecker {
 		String s116 = s114.replace("!", YeOldeMessageDatabase.getRandomReplacedWord("!"));
 		String s117 = s116.replace("?", YeOldeMessageDatabase.getRandomReplacedWord("?"));
 		String s118 = s117.replace(" flag", YeOldeMessageDatabase.getRandomReplacedWord("flag"));
-		String s119 = s118.replaceFirst(s118.valueOf(s118.charAt(0)), s118.valueOf(s118.charAt(0)).toUpperCase());
+		String s119 = s118.replaceFirst(String.valueOf(s118.charAt(0)), String.valueOf(s118.charAt(0)).toUpperCase());
 		
 		return s119;
 	}

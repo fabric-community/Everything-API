@@ -18,16 +18,16 @@ public abstract class IterableEnvelope<A> implements Iterable<A> {
 
     @Override
     public final Iterator<A> iterator() {
-        return iterable.iterator();
+        return this.iterable.iterator();
     }
 
     @Override
     public final Spliterator<A> spliterator() {
-        return iterable.spliterator();
+        return this.iterable.spliterator();
     }
 
     @Override
     public final void forEach(final Consumer<? super A> action) {
-        iterable.forEach(action);
+	    this.iterable.forEach(action);
     }
 }

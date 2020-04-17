@@ -54,7 +54,7 @@ public interface IO<A> {
      * @return the transformed IO instance
      */
     default <B> IO<B> map(final Function<A, B> transform) {
-        return () -> transform.apply(execute());
+        return () -> transform.apply(this.execute());
     }
 
     /**
@@ -65,7 +65,7 @@ public interface IO<A> {
      * @return the transformed IO instance
      */
     default <B> IO<B> flatMap(final Function<A, IO<B>> transform) {
-        return () -> transform.apply(execute()).execute();
+        return () -> transform.apply(this.execute()).execute();
     }
 
     /**
@@ -92,7 +92,7 @@ public interface IO<A> {
      * @return the merged instance
      */
     default IO<A> andThen(final IO<?> other) {
-        return merge(other, (first, second) -> first);
+        return this.merge(other, (first, second) -> first);
     }
 
     /**
@@ -208,5 +208,5 @@ enum DefaultIO implements IO<Unit> {
         public Unit execute() throws UnsupportedOperationException {
             throw new UnsupportedOperationException("IO.never does not have a value.");
         }
-    };
+    }
 }

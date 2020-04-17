@@ -10,7 +10,7 @@ public final class UncheckedScalar<A> implements Scalar<A> {
     @Override
     public A get() {
         try {
-            return scalar.get();
+            return this.scalar.get();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

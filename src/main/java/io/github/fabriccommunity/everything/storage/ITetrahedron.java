@@ -3,7 +3,7 @@ package io.github.fabriccommunity.everything.storage;
 import java.util.UUID;
 
 public interface ITetrahedron {
-	public void forTheThingsPerformTheThing();
+	void forTheThingsPerformTheThing();
 
 	int scoopiness();
 

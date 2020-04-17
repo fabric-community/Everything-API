@@ -12,23 +12,23 @@ public class Universe {
 	}
 
 	public void forTheThingsPerformTheThing() {
-		for (Dimension thing : things) {
+		for (Dimension thing : this.things) {
 			thing.forTheThingsPerformTheThing();
 		}
 	}
 
 	public Dimension getThing(int position) {
-		return things.get(position);
+		return this.things.get(position);
 	}
 
 	public String setThing(int position, Dimension thingy) {
-		things.set(position, thingy);
+		this.things.set(position, thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Yes hi, thing in the thing now.";
 	}
 
 	public String addThing(Dimension thingy) {
-		things.add(thingy);
+		this.things.add(thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Um thingy in the doohickey now";
 	}

@@ -15,7 +15,7 @@ public final class For<A> implements Proc<Iterable<? extends A>> {
     @Override
     public void run(final Iterable<? extends A> input) throws Exception {
         for (A value : input) {
-            proc.run(value);
+	        this.proc.run(value);
         }
     }
 }

@@ -38,9 +38,9 @@ public final class PureRegistry<A> {
      */
     public PureRegistry<A> with(final String path, final A value) {
         final ImmutableMap.Builder<Identifier, A> builder = ImmutableMap.builder();
-        builder.putAll(entries);
-        builder.put(new Identifier(namespace, path), value);
-        return new PureRegistry<>(namespace, builder.build());
+        builder.putAll(this.entries);
+        builder.put(new Identifier(this.namespace, path), value);
+        return new PureRegistry<>(this.namespace, builder.build());
     }
 
     /**
@@ -51,11 +51,11 @@ public final class PureRegistry<A> {
      */
     public PureRegistry<A> with(final Map<String, A> values) {
         ImmutableMap.Builder<Identifier, A> builder = ImmutableMap.builder();
-        builder.putAll(entries);
+        builder.putAll(this.entries);
         for (Map.Entry<String, A> entry : values.entrySet()) {
-            builder.put(new Identifier(namespace, entry.getKey()), entry.getValue());
+            builder.put(new Identifier(this.namespace, entry.getKey()), entry.getValue());
         }
-        return new PureRegistry<>(namespace, builder.build());
+        return new PureRegistry<>(this.namespace, builder.build());
     }
 
     /**
@@ -67,9 +67,9 @@ public final class PureRegistry<A> {
      */
     public PureRegistry<A> withNamespaced(final Identifier id, final A value) {
         final ImmutableMap.Builder<Identifier, A> builder = ImmutableMap.builder();
-        builder.putAll(entries);
+        builder.putAll(this.entries);
         builder.put(id, value);
-        return new PureRegistry<>(namespace, builder.build());
+        return new PureRegistry<>(this.namespace, builder.build());
     }
 
     /**
@@ -80,9 +80,9 @@ public final class PureRegistry<A> {
      */
     public PureRegistry<A> withNamespaced(final Map<Identifier, A> values) {
         ImmutableMap.Builder<Identifier, A> builder = ImmutableMap.builder();
-        builder.putAll(entries);
+        builder.putAll(this.entries);
         builder.putAll(values);
-        return new PureRegistry<>(namespace, builder.build());
+        return new PureRegistry<>(this.namespace, builder.build());
     }
 
     /**
@@ -93,7 +93,7 @@ public final class PureRegistry<A> {
      */
     public IO<Unit> registerTo(final Registry<? super A> registry) {
         return IO.of(() -> {
-            for (Map.Entry<Identifier, A> entry : entries.entrySet()) {
+            for (Map.Entry<Identifier, A> entry : this.entries.entrySet()) {
                 Registry.register(registry, entry.getKey(), entry.getValue());
             }
         });

@@ -13,6 +13,6 @@ public abstract class ScalarEnvelope<A> implements Scalar<A> {
 
     @Override
     public final A get() throws Exception {
-        return scalar.get();
+        return this.scalar.get();
     }
 }

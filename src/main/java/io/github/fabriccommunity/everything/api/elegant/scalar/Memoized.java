@@ -11,11 +11,11 @@ public final class Memoized<A> implements Scalar<A> {
 
     @Override
     public A get() throws Exception {
-        if (!initialized) {
-            value = scalar.get();
-            initialized = true;
+        if (!this.initialized) {
+	        this.value = this.scalar.get();
+	        this.initialized = true;
         }
 
-        return value;
+        return this.value;
     }
 }

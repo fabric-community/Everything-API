@@ -15,7 +15,7 @@ public final class UncheckedProc<A> implements Proc<A> {
     @Override
     public final void run(final A input) {
         try {
-            proc.run(input);
+	        this.proc.run(input);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

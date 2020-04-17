@@ -28,7 +28,7 @@ public abstract class ItemModelsMixin {
         ModelInjectionRegistry.originalItemMap.clear();
         ModelInjectionRegistry.itemMap.forEach((item,model)->
         {
-            ModelInjectionRegistry.originalItemMap.put(item, models.put(Item.getRawId(item), model));
+            ModelInjectionRegistry.originalItemMap.put(item, this.models.put(Item.getRawId(item), model));
         });
     }
 

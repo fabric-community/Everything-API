@@ -12,23 +12,122 @@ public class Planet {
 	}
 
 	public void forTheThingsPerformTheThing() {
-		for (Warehouse thing : things) {
-			thing.forTheThingsPerformTheThing();
-		}
+		int index = 0;
+		try {
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+			things.get(index++).forTheThingsPerformTheThing();
+
+		} catch (Exception e) {}
 	}
 
 	public Warehouse getThing(int position) {
-		return things.get(position);
+		return this.things.get(position);
 	}
 
 	public String setThing(int position, Warehouse thingy) {
-		things.set(position, thingy);
+		this.things.set(position, thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Yes hi, thing in the thing now.";
 	}
 
 	public String addThing(Warehouse thingy) {
-		things.add(thingy);
+		this.things.add(thingy);
 		thingy.forTheThingsPerformTheThing();
 		return "Um thingy in the doohickey now";
 	}

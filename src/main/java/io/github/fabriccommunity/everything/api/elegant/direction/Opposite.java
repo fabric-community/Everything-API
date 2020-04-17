@@ -16,6 +16,6 @@ public final class Opposite implements Scalar<Direction> {
 
     @Override
     public Direction get() throws Exception {
-        return direction.get().getOpposite();
+        return this.direction.get().getOpposite();
     }
 }

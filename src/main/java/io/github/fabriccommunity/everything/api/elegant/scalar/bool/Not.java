@@ -11,6 +11,6 @@ public final class Not implements Scalar<Boolean> {
 
     @Override
     public Boolean get() throws Exception {
-        return !scalar.get();
+        return !this.scalar.get();
     }
 }

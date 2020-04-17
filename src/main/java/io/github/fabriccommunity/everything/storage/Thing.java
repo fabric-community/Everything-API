@@ -4,7 +4,7 @@ package io.github.fabriccommunity.everything.storage;
 public class Thing<T> extends ThingAbstract {
 	// Don't do this, very bad.
 	public Thing() {
-		super((T) "wababa");
+		super("wababa");
 	}
 
 	public Thing(T thing) {

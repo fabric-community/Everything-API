@@ -15,6 +15,6 @@ public final class Merged<A, B, C> implements Scalar<C> {
 
     @Override
     public C get() throws Exception {
-        return mergingFn.apply(first.get(), second.get());
+        return this.mergingFn.apply(this.first.get(), this.second.get());
     }
 }

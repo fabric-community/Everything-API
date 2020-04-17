@@ -14,6 +14,6 @@ public abstract class ProcEnvelope<A> implements Proc<A> {
 
     @Override
     public final void run(final A input) throws Exception {
-        proc.run(input);
+	    this.proc.run(input);
     }
 }

@@ -25,6 +25,6 @@ public final class SetBlockState implements Proc<World> {
 
     @Override
     public void run(World input) throws Exception {
-        input.setBlockState(pos.get(), state.get());
+        input.setBlockState(this.pos.get(), this.state.get());
     }
 }
