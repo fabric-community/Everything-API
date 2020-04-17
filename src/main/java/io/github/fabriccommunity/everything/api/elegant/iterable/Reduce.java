@@ -1,7 +1,7 @@
 package io.github.fabriccommunity.everything.api.elegant.iterable;
 
-import io.github.fabriccommunity.everything.api.function.ThrowingBiFunction;
-import io.github.fabriccommunity.everything.api.function.ThrowingFunction;
+import io.github.fabriccommunity.everything.api.functional.ThrowingBiFunction;
+import io.github.fabriccommunity.everything.api.functional.ThrowingFunction;
 
 import java.util.NoSuchElementException;
 
