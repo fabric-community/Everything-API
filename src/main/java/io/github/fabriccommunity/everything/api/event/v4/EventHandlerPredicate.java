@@ -1,4 +1,4 @@
-package io.github.fabriccommunity.everything.api.event.juuz;
+package io.github.fabriccommunity.everything.api.event.v4;
 
 import io.github.fabriccommunity.everything.api.functional.IO;
 

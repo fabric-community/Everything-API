@@ -1,7 +1,7 @@
-package io.github.fabriccommunity.everything.api.event.juuz.events;
+package io.github.fabriccommunity.everything.api.event.v4.events;
 
-import io.github.fabriccommunity.everything.api.event.juuz.AbstractVetoableEvent;
-import io.github.fabriccommunity.everything.api.event.juuz.EventManager;
+import io.github.fabriccommunity.everything.api.event.v4.AbstractVetoableEvent;
+import io.github.fabriccommunity.everything.api.event.v4.EventManager;
 import net.minecraft.container.Container;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
