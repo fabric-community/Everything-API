@@ -33,14 +33,26 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
- * An interface for impure operations.
+ * A function with side effects.
+ *
+ * <p>For operations that would return {@code void} in the impure world,
+ * {@link Unit} should be used instead. {@code IO<Void>} is discouraged as it has no values.
+ *
+ * <p>Inspired by <a href="https://arrow-kt.io/docs/0.10/effects/io/">the {@code IO} from Arrow FX</a>.
  *
  * @param <A> the return value, use {@link com.mojang.datafixers.util.Unit} for unit/void methods
+ * @see Scalar the EO variant of this interface
  */
 @FunctionalInterface
 public interface IO<A> {
     /**
-     * Executes the impure operation.
+     * Executes this impure operation.
+     *
+     * <p>This method should only be called directly in other
+     * impure contexts (inside another {@code IO}).
+     * {@code IO}s can be executed in pure contexts using {@link #executeUnsafe(IO)}.
+     * For mod initialization, you can use {@link FunctionalModInitializer} instead of
+     * Fabric Loader's initializer interfaces.
      *
      * @return the impure return value
      */
@@ -242,7 +254,7 @@ public interface IO<A> {
     }
 
     /**
-     * Executes an IO unsafely.
+     * Executes an IO in a non-IO context.
      *
      * <p>Thrown exceptions will be ignored and converted into {@link UnsafeExecutionException}.
      *

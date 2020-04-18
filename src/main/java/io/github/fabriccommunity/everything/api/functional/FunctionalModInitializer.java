@@ -24,6 +24,21 @@ import net.fabricmc.api.Environment;
 /**
  * A functional mod initializer wraps impure initialization operations
  * in an {@link IO}.
+ *
+ * <h2>Usage example</h2>
+ * <pre>
+ * {@code
+ * public final class MyMod implements FunctionalModInitializer {
+ *     {@literal @}Override
+ *     public IO<Unit> onInitialize() {
+ *         return () -> {
+ *             System.out.println("Hello IO world!");
+ *             return Unit.INSTANCE;
+ *         };
+ *     }
+ * }
+ * }
+ * </pre>
  */
 @FunctionalInterface
 public interface FunctionalModInitializer {
