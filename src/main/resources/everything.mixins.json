@@ -11,17 +11,19 @@
     "general.ContinentLayerMixin",
     "general.VanillaLayeredBiomeSourceMixin",
     "general.SetBaseBiomesLayerMixin",
-    "general.ServerPlayerEntityMixin",
     "implementation.event.v3.BlockEventsImpl",
     "implementation.event.v3.PlayerManagerImpl",
     "implementation.event.v3.ServerMainImpl",
     "implementation.event.v3.ServerPlayNetworkHandlerImpl",
+    "implementation.event.v4.ServerPlayerEntityMixin",
+    "implementation.event.v4.WorldMixin",
     "implementation.level.SetBlockEventMixin"
   ],
   "client": [
     "implementation.event.v3.ClientMainImpl",
     "implementation.event.v3.MinecraftClientImpl",
     "implementation.event.v3.ClientPlayNetworkHandlerImpl",
+    "implementation.event.v4.client.ClientPlayerInteractionManagerMixin",
     "implementation.render.ItemRendererRegistryImpl",
     "implementation.model.BlockModelInjectionRegistryImpl",
     "implementation.model.ItemModelInjectionRegistryImpl"

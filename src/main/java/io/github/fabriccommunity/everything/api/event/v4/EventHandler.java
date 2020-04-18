@@ -20,13 +20,15 @@ package io.github.fabriccommunity.everything.api.event.v4;
 import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.functional.IO;
 
+import java.util.EventListener;
+
 /**
  * An event handler.
  *
  * @param <A> the event type
  */
 @FunctionalInterface
-public interface EventHandler<A> {
+public interface EventHandler<A> extends EventListener {
     /**
      * Handles the event.
      *

@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.fabriccommunity.everything.mixin.general;
+package io.github.fabriccommunity.everything.mixin.implementation.event.v4;
 
 import com.mojang.authlib.GameProfile;
 import io.github.fabriccommunity.everything.api.elegant.scalar.ScalarOf;
