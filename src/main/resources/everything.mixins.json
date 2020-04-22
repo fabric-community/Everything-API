@@ -26,7 +26,9 @@
     "implementation.event.v4.client.ClientPlayerInteractionManagerMixin",
     "implementation.render.ItemRendererRegistryImpl",
     "implementation.model.BlockModelInjectionRegistryImpl",
-    "implementation.model.ItemModelInjectionRegistryImpl"
+    "implementation.model.ItemModelInjectionRegistryImpl",
+    "client.ClientPlayerInteractionManagerMxn",
+    "client.ClientPlayNetworkHandlerMxn"
   ],
   "server": [
     "PacketByteBufMxn"
