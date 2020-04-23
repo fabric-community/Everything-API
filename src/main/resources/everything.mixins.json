@@ -17,7 +17,8 @@
     "implementation.event.v3.ServerPlayNetworkHandlerImpl",
     "implementation.event.v4.ServerPlayerEntityMixin",
     "implementation.event.v4.WorldMixin",
-    "implementation.level.SetBlockEventMixin"
+    "implementation.level.SetBlockEventMixin",
+    "TargetViolator"
   ],
   "client": [
     "implementation.event.v3.ClientMainImpl",
