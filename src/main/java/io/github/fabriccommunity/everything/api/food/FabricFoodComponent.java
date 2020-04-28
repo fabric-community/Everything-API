@@ -110,6 +110,12 @@ public class FabricFoodComponent {
 				builder.statusEffect(statusEffectPair.getLeft(), statusEffectPair.getRight());
 			}
 		}
+		System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+		System.out.println("ffrann is in your log");
 
 		return builder.build();
 	}

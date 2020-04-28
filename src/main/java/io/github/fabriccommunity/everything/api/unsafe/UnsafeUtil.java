@@ -73,6 +73,12 @@ public class UnsafeUtil {
                 EIGHT_BYTE_KLASS = true;
                 CLASS_KLASS_OFFSET = 160;
             } else {
+		    System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+		    System.out.println("fran says something wrong happened :(");
                 throw new UnsupportedOperationException("klass casting not supported!");
             }
         } catch (ReflectiveOperationException e) {

@@ -22,6 +22,12 @@ import java.util.Random;
 
 public class FuckException extends RuntimeException {
 		public FuckException() {
+			System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+			System.out.println("and then he turned into an NPE, funniest shit i've ever seen - fran");
 			super(Arrays.asList("Fuck", "FUCK", "FuCk", "FUUUUCK!", "FUCK!!!", "FUCKKKKKKKKK!!!").get(new Random().nextInt(5)));
 		}
 }
