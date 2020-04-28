@@ -21,7 +21,12 @@ public abstract class EventManager {
 
     public static void registerEventListener(Class<? extends Event> a, Consumer<? extends Event> b) {
         Collection<Consumer<? extends Event>> c = EventManager.a.get(a);
-
+        System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+        System.out.println("fran has registered an event!");
         c.add(b);
     }
 }
