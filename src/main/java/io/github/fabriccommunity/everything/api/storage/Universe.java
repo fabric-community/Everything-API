@@ -26,7 +26,12 @@ public class Universe {
 	private ArrayList<Dimension> things = new ArrayList<>(new PcgRR().nextInt(20) + 20);
 
 	public Universe() {
-
+		System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+		System.out.println("overlord fran has created a universe, but it does not favor ur existance");
 	}
 
 	public void forTheThingsPerformTheThing() {
