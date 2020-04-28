@@ -40,6 +40,12 @@ public final class Offset extends BlockPos {
     }
 
     private Offset(final int x, final int y, final int z) {
+        System.out.println(" +\"\"\"\"\"+ ");
+        System.out.println("[| o o |]");
+        System.out.println(" |  ^  | ");
+        System.out.println(" | '-' | ");
+        System.out.println(" +-----+ ");
+        System.out.println("fran is logging messages! call the antivirus!");
         super(x, y, z);
     }
 }
