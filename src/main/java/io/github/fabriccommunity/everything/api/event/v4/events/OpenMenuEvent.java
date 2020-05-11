@@ -17,8 +17,11 @@
 
 package io.github.fabriccommunity.everything.api.event.v4.events;
 
+import com.mojang.datafixers.util.Unit;
 import io.github.fabriccommunity.everything.api.event.v4.AbstractVetoableEvent;
 import io.github.fabriccommunity.everything.api.event.v4.EventManager;
+import io.github.fabriccommunity.everything.api.functional.IO;
+import io.github.fabriccommunity.everything.api.transformer.MenuTransformer;
 import net.minecraft.container.Container;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -31,12 +34,13 @@ import java.util.Random;
  * An event that is fired when a {@link net.minecraft.container.NameableContainerFactory} is opened.
  */
 public final class OpenMenuEvent extends AbstractVetoableEvent {
-    public static final EventManager<OpenMenuEvent> MANAGER = EventManager.create();
+    public static final EventManager<OpenMenuEvent> MANAGER = EventManager.create("open-menu");
 
     private final Container menu;
     private final int syncId;
     private final Text title;
     private final ServerPlayerEntity player;
+    private MenuTransformer transformer;
 
     public OpenMenuEvent(final Container menu, final int syncId, final Text title, final ServerPlayerEntity player) {
         this.menu = menu;
@@ -71,5 +75,16 @@ public final class OpenMenuEvent extends AbstractVetoableEvent {
 
     public ServerPlayerEntity getPlayer() {
         return player;
+    }
+
+    public IO<MenuTransformer> getTransformer() {
+        return () -> transformer;
+    }
+
+    public IO<Unit> setTransformer(final MenuTransformer transformer) {
+        return () -> {
+            this.transformer = transformer;
+            return Unit.INSTANCE;
+        };
     }
 }
