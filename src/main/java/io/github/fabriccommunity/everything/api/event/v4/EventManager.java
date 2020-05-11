@@ -31,6 +31,7 @@ import java.util.OptionalLong;
 
 /**
  * An event manager holds event handlers and dispatches events.
+ *
  * @param <A> the event type
  */
 public interface EventManager<A> {
@@ -46,9 +47,9 @@ public interface EventManager<A> {
      * Gets the age of an event handler, or the time since it has been registered.
      *
      * @param handler the handler
-     * @param eager whether the age should be evaluated eagerly or lazily
+     * @param eager   whether the age should be evaluated eagerly or lazily
      * @return the IO operation containing the age,
-     *         or empty if the handler has not been registered or this manager does not support ages
+     * or empty if the handler has not been registered or this manager does not support ages
      */
     IO<OptionalLong> getAge(EventHandler<A> handler, boolean eager);
 
@@ -74,10 +75,11 @@ public interface EventManager<A> {
      *
      * <p>Instances created using this method have {@link EventHandlerPredicate#nonnull()} already registered.
      *
-     * @param <A> the event type
+     * @param name the event name
+     * @param <A>  the event type
      * @return the created manager
      */
-    static <A> EventManager<A> create() {
+    static <A> EventManager<A> create(final String name) {
         return new EventManager<A>() {
             private final List<EventHandler<A>> handlers = new ArrayList<>();
             private final List<EventHandlerPredicate<A>> handlerPredicates = new ArrayList<>();
@@ -90,6 +92,29 @@ public interface EventManager<A> {
 
             @Override
             public IO<Boolean> register(final EventHandler<A> handler) {
+                final class ExecutionTrackingIO<A> implements IO<A> {
+                    private final IO<A> io;
+                    private boolean executed = false;
+
+                    ExecutionTrackingIO(final IO<A> io) {
+                        this.io = io;
+                    }
+
+                    @Override
+                    public A execute() throws Exception {
+                        executed = true;
+                        return io.execute();
+                    }
+
+                    @Override
+                    protected void finalize() throws Throwable {
+                        super.finalize();
+                        if (!executed) {
+                            System.err.println("Registration for " + name + " has not been executed! This is probably a bug...");
+                        }
+                    }
+                }
+
                 final IO<IO<Boolean>> main = () -> {
                     final IO<Unit> addingHandler = () -> {
                         handlers.add(handler);
@@ -97,13 +122,13 @@ public interface EventManager<A> {
                         return Unit.INSTANCE;
                     };
                     final EventHandlerPredicate<A> registrationValidator =
-                            new Reduce<EventHandlerPredicate<A>>(
-                                    (first, second) -> h -> first.test(h).merge(second.test(h), (a, b) -> a && b)
-                            ).apply(handlerPredicates);
+                        new Reduce<EventHandlerPredicate<A>>(
+                            (first, second) -> h -> first.test(h).merge(second.test(h), (a, b) -> a && b)
+                        ).apply(handlerPredicates);
 
                     return registrationValidator.test(handler).flatMap(x -> x ? IO.pure(true).andThen(addingHandler) : IO.pure(false));
                 };
-                return IO.flatten(main);
+                return new ExecutionTrackingIO<>(IO.flatten(main));
             }
 
             @Override
@@ -121,7 +146,7 @@ public interface EventManager<A> {
 
             @Override
             public IO<Unit> execute(final A input) {
-                return () -> new Ternary<>(handlers::isEmpty, new ScalarOf<>(IO.empty()), new ScalarOf<>(IO.flatten(IO.fix(new Reduce<EventHandler<A>>((a, b) -> event -> a.handle(event).andThen(b.handle(event))).apply(handlers)::handle, input)))).value();
+                return IO.of(new Ternary<>(handlers::isEmpty, new ScalarOf<>(IO.empty()), new ScalarOf<>(IO.flatten(IO.flatten(() -> IO.fix(new Reduce<EventHandler<A>>((a, b) -> event -> a.handle(event).andThen(b.handle(event))).apply(handlers)::handle, input))))));
             }
         };
     }

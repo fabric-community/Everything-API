@@ -25,7 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public final class RemoveBlockEvent extends AbstractVetoableEvent {
-    public static final EventManager<RemoveBlockEvent> MANAGER = EventManager.create();
+    public static final EventManager<RemoveBlockEvent> MANAGER = EventManager.create("remove-block");
 
     private final World world;
     private final BlockPos pos;

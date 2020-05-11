@@ -106,8 +106,10 @@ public interface IO<A> {
      * @param other the other IO
      * @param mergingFn the merging function
      * @return the merged IO
+     * @param <B> the other type
+     * @param <C> the merged type
      */
-    default <B> IO<A> merge(final IO<B> other, final BiFunction<A, B, A> mergingFn) {
+    default <B, C> IO<C> merge(final IO<B> other, final BiFunction<A, B, C> mergingFn) {
         return () -> {
             final A first = this.execute();
             final B second = other.execute();
