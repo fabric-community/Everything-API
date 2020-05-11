@@ -17,10 +17,11 @@ public final class TargetViolatorHelper {
      */
     public static final void register(Target target)
     {
-        Target[] targets = TargetViolator.getValues();
+        // FIXME
+        Target[] targets = Target.values() /*TargetViolator.getValues()*/;
         targets = Arrays.copyOf(targets, targets.length+1);
         targets[targets.length-1] = target;
-        TargetViolator.setValues(targets);
+        /*TargetViolator.setValues(targets);*/
         try
         {
             TargetViolator.getNameMap().put(target.getName(), target);
@@ -40,20 +41,22 @@ public final class TargetViolatorHelper {
      */
     public static final Target register(String enumName,String targetName, Predicate<BlockState> pred)
     {
-        Target target = TargetViolator.newTarget(enumName, TargetViolator.getValues().length-1, targetName, pred);
-        Target[] targets = TargetViolator.getValues();
-        targets = Arrays.copyOf(targets, targets.length+1);
-        targets[targets.length-1] = target;
-        TargetViolator.setValues(targets);
-        try
-        {
-            TargetViolator.getNameMap().put(target.getName(), target);
-        }
-        catch(Throwable t)
-        {
-            TargetViolator.setNameMap(Maps.newHashMap(TargetViolator.getNameMap()));
-            TargetViolator.getNameMap().put(target.getName(), target);
-        }
-        return target;
+        // FIXME
+//        Target target = TargetViolator.newTarget(enumName, TargetViolator.getValues().length-1, targetName, pred);
+//        Target[] targets = TargetViolator.getValues();
+//        targets = Arrays.copyOf(targets, targets.length+1);
+//        targets[targets.length-1] = target;
+//        TargetViolator.setValues(targets);
+//        try
+//        {
+//            TargetViolator.getNameMap().put(target.getName(), target);
+//        }
+//        catch(Throwable t)
+//        {
+//            TargetViolator.setNameMap(Maps.newHashMap(TargetViolator.getNameMap()));
+//            TargetViolator.getNameMap().put(target.getName(), target);
+//        }
+//        return target;
+        return null;
     }
 }

@@ -21,16 +21,17 @@ public interface TargetViolator {
     /**
      * Synthetic field holding Enum#values() value
      */
-    @Accessor("field_13729")
-    public static Target[] getValues()
-    {
-        throw new IllegalStateException("Where'd my accessor go");
-    }
-    @Accessor("field_13729")
-    public static void setValues(Target[] targets)
-    {
-        throw new IllegalStateException("Where'd my accessor go");
-    }
+    // FIXME
+//    @Accessor("field_13729")
+//    public static Target[] getValues()
+//    {
+//        throw new IllegalStateException("Where'd my accessor go");
+//    }
+//    @Accessor("field_13729")
+//    public static void setValues(Target[] targets)
+//    {
+//        throw new IllegalStateException("Where'd my accessor go");
+//    }
     @Accessor("nameMap")
     public static Map<String, Target> getNameMap()
     {
